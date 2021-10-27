@@ -30,7 +30,7 @@ public class PrintEx1 {
 		//10 + '+' => 10 + 43 = 53
 		//아스키코드 할당으로 인해 +가 숫자 43으로 계산됨
 		//정수 + 문자열 => 문자열 + 문자열 => 문자열
-		System.out.println("" + num1 + operator + num2 + "=" + num1 + num2 );
+		//System.out.println("" + num1 + operator + num2 + "=" + num1 + num2 );
 		//결과 : 10+20=1020
 		System.out.println("" + num1 + operator + num2 + "=" + (num1 + num2) );
 	}
