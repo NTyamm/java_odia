@@ -2,7 +2,7 @@ package Day3;
 
 import java.util.Scanner;
 
-public class IfMultipleEx2 {
+public class IfMultipleEx2and3 {
 
 	public static void main(String[] args) {
 		/*정수를 입력받고
