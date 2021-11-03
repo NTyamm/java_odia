@@ -33,7 +33,7 @@ public class ArraySumEx1 {
 		sum1 += arr[4];
 		System.out.println("2부터 10까지의 합 : " + sum1);
 		
-		//
+		//빠르고 깔끔
 		int arr2[] = new int[5];
 		for(i = 0; i <5 ; i++) { //향상된 for문 사용 불가능
 			arr2[1] = 2 * i + 2; //<이 라인에서 배열의 값을 수정하기 때문
