@@ -13,7 +13,7 @@ public class MethodSumEx2 {
 		sumAll3(1,10);
 		//sumAll4 형태
 		int begin = 1, end = 10;
-		System.out.println(begin + "부터" + end + "까지 합 : " + sumAll4(begin,end)); 
+		System.out.println(begin + "부터 " + end + "까지 합 : " + sumAll4(begin,end));
 		int sum = sumAll4(1,10) + sumAll4(21,30);
 		System.out.println("1에서 10까지의 합과 21에서 30까지의 합을 더한 값 :  " + sum);
 	}
@@ -43,7 +43,7 @@ public class MethodSumEx2 {
 		for(int i = begin; i <= end ; i++) {
 			sum+= i;
 		}
-		System.out.println(begin + "부터" + end + "까지 합 : " + sum); 
+		System.out.println(begin + "부터 " + end + "까지 합 : " + sum); 
 	}
 	/* 기능 	: begin부터 end까지 합을 알려주 메소드
 	 * 매개변수: 시작숫자와 마지막 수 -> int begin, int end
@@ -62,11 +62,11 @@ public class MethodSumEx2 {
 	 * 리턴타입: 누적합 -> 정수 -> int
 	 * 메소드명: sumAll4
 	 */
-	public static void sumAll4(int begin, int end) {
+	public static int sumAll4(int begin, int end) {
 		int sum = 0;
 		for(int i = begin; i <= end ; i++) {
 			sum+= i;
 		}
-		System.out.println(begin + "부터" + end + "까지 합 : " + sum); 
+		return sum;
 	}
 }
