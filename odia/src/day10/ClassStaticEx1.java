@@ -26,7 +26,7 @@ public class ClassStaticEx1 {
 		Random r = new Random();
 		
 		//0에서 10미만의 랜덤한 정수를 알려주는 객체 메소드
-		System.out.println(r.nextLine(10));
+		System.out.println(r.nextInt(10));
 		
 
 	}
