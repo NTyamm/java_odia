@@ -3,8 +3,7 @@ package day1;
 public class VariableEX1 {
 	/**
 	 *  */
-	 * @param args
-	 */
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 			// 한줄 주석

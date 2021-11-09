@@ -8,7 +8,7 @@ public class StringEx1 {
 		String str1;
 		String str2 = "Hello";
 		System.out.println(str2);
-		str1 = str2 + "World!"
+		str1 = str2 + "World!";
 		System.out.println(str1);
 	}
 

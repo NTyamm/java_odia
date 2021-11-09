@@ -14,20 +14,22 @@ public class ScoreEx1 {
 		 * 잘못된 점수: 잘못된 점수입니다.
 		 */
 		Scanner scan = new Scanner(System.in);
+		System.out.println("점수를 입력하세요(0~100 사이의 정수) : ");
 		int score = scan.nextInt();
-		scan.close();
 		
-		if (90 <= score && score <= 100) {
+		if (90 >= score && score <= 100) {
 			System.out.println(score + "점은 A학점입니다.");		
-			}else if (80 <= score && score < 90)
+			}else if (80 >= score && score < 90) {
 				System.out.println(score + "점은 B학점입니다.");		
-			}else if (70 <= score && score < 80) {			
+			}else if (70 >= score && score < 80) {			
 				System.out.println(score + "점은 C학점입니다.");		
-			}else if (60 <= score && score < 70) {
+			}else if (60 >= score && score < 70) {
 				System.out.println(score + "점은 D학점입니다");
-			}else if (0 < score && score < 60) {
+			}else if (0 >= score && score < 60) {
 				System.out.println(score + "점은 F학점입니다");
 			}else {System.out.println("잘못된 점수입니다.");
 	}
+		scan.close();
+}
 
 }
