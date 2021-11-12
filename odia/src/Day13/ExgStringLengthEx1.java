@@ -1,0 +1,28 @@
+package Day13;
+
+public class ExgStringLengthEx1 {
+
+	public static void main(String[] args) {
+		/**/
+		String str = "Hello world";
+		System.out.println(str + "의 문자열 길이 :" + str.length());
+		/*String toString() : 문자열 자체를 반환*/
+		System.out.println(str.toString());
+		System.out.println(str);
+
+		/*문자열이 몇 개 있는지 확인하는 예제*/
+		String str1 = "abcdabababaabbabab";
+		String search = "ab";
+		int index = 0;
+		int count = 0;
+		do {
+			index = str1.indexOf(search, index);
+			if (index >= 0) {
+				count++;
+				index = index + search.length(); //문자열 찾을 땐 length를 이용해야 함
+			}
+		}while(index != -1);
+		System.out.println(str1 + "에" + search + "의 갯수 : "+ count);
+	}
+
+}
