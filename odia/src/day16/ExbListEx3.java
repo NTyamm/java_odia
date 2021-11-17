@@ -1,9 +1,8 @@
 package day16;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
-import day16.ExbListEx2.ExbStudent;
+import day16.ExbStudent;
 
 public class ExbListEx3 {
 
@@ -67,5 +66,68 @@ public class ExbListEx3 {
 		}while(menu != 4);//3번 메뉴를 선택하면 반복문 종료
 		System.out.println("프로그램을 종료합니다.");
 	}
+	
+	public static int printMenu(Scanner scan) {
+		System.out.println("[메뉴]");
+		System.out.println("1. 학생정보 추가");
+		System.out.println("2. 전체 학생정보 출력");
+		System.out.println("3. 프로그램 종료");
+		System.out.print("메뉴를 선택하세요(1~3) : ");
+		int menu = scan.nextInt();
+		return menu;
+	}
+	
+	public static ExbStudent inputStudent(Scanner scan) {
+		System.out.println("학생 정보를 입력하세요.");
+		System.out.print("학년 : ");
+		int grade = scan.nextInt();
+		System.out.print("학반 : ");
+		int classNum = scan.nextInt();
+		System.out.print("번호 : ");
+		int num = scan.nextInt();
+		System.out.print("이름 : ");
+		/*nextLine()을 이용하는 경우 앞에서 앞에서 Scanner를 통해 입력받은 값 중 엔터가 사라지지 않는 상황이면
+		 * 실제 사용하려는 nextLine()앞에 nextLine()을 한 번 더 입력해야 한다.*/
+		scan.nextLine(); //엔터처리
+		String name = scan.nextLine();
+		System.out.println("성적을 입력하세요.");
+		System.out.print("국어 : ");
+		int kor = scan.nextInt();
+		System.out.print("영어 : ");
+		int eng = scan.nextInt();
+		System.out.print("수학 : ");
+		int math = scan.nextInt();
+		ExbStudent std = new ExbStudent(grade, classNum, num, name, kor, eng, math);
+		return std;
+		
+	
+	
+	/* 기능 : Scanner를 이용하여 학생 정보돠 성적을 입력받아 입력받은 학생정보를 주어진 리스트에 넣어주는 메소드
+	 * 매개변수 : Scanner, 주어진 리스트 -> Scanner scan, ArrayList<ExbStudent> stdList
+	 * 리턴타입 : 리스트에 넣고 끝남 -> 필요없음 -> void
+	 * 메소드명 : inputStudent
+	 */ 
+	public static void inputStudent(Scanner scan, ArrayList<ExbStudent> stdList) {
+		ExbStudent std = inputStudent(scan); //오버로딩을 이용해 위에서 작업한 메소드 이용 가능 
+				stdList.add(std);
+	}
+	
+	/* 기능 : 학생 리스트가 주어지면 주어진 학생정보를 출력하는 메소드
+	 * 매개변수 : 학생리스트 - >ArrayList<ExbStudent> stdList
+	 * 리턴타입 : 없음 -> void
+	 * 메소드명 : printStdList
+	 */
+	public static void printStudentList(ArrayList<ExbStudent> stdList) {
+		Iterator<ExbStudent> it = stdList.iterator();
+		while(it.hasNext()) {			//리스트에서 하나씩 꺼내서
+			ExbStudent tmp = it.next(); //tmp에 저장
+			System.out.println(tmp);
+		}
+	}
+	
+	/* 기능	: 주어진 리스트에 Scanner를 통해 입력받은 학생정보를 삭제하여 삭제됐는지 알려주는 메소드
+	 * 매개변수 : 주어진 리스트, Scanner -> ArrayList<ExbStudent> stdList, Scanner scan
+	 * 리턴타입 : */
+	
 
 }
