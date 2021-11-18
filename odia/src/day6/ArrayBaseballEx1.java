@@ -34,6 +34,7 @@ public class ArrayBaseballEx1 {
 		//사용자가 컴퓨터 숫자 3개를 입력
 		System.out.print("컴퓨터(예: 1 2 3): ");
 		int com[] = new int[3];
+		int [][][]com2 = new int [1][1][3];
 		Scanner scan = new Scanner(System.in);
 //		com[0] = scan.nextInt();
 //		com[1] = scan.nextInt();
@@ -71,7 +72,7 @@ public class ArrayBaseballEx1 {
 				 if (i == j) {
 				  continue;
 				 }
-			 	if (com[i] == user[j]) {
+			 	if(com[i] == user[j]) {
 				 ball++;
 			 }
 		}

@@ -29,6 +29,6 @@ public class StarEx1 {
 			20.System.out.println(); //엔터
 			*/
 		}
-	}
+	
 
 }

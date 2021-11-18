@@ -3,7 +3,7 @@ package day6;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class ArrayBaseballEx1 {
+public class ArrayBaseballEx2 {
 
 	public static void main(String[] args) {
 		/* 숫자 야구 게임
@@ -34,6 +34,7 @@ public class ArrayBaseballEx1 {
 		//사용자가 컴퓨터 숫자 3개를 입력
 		System.out.print("컴퓨터(예: 1 2 3): ");
 		int com[] = new int[3];
+		int [][][]com2 = new int [1][1][3];
 		Scanner scan = new Scanner(System.in);
 //		com[0] = scan.nextInt();
 //		com[1] = scan.nextInt();
@@ -74,7 +75,7 @@ public class ArrayBaseballEx1 {
 			 	if (com[i] == user[j]) {
 				 ball++;
 			 }
-		}
+		
 		}
 		//스트라이크만 있는 경우는 xS
 		//볼만 있는 경우는 xB
@@ -88,7 +89,7 @@ public class ArrayBaseballEx1 {
 			System.out.println(ball+"B");
 		}else{	System.out.println("3O");}
 		
-		}		}while(strike !=3);
+		}while(strike !=3);
 		if (strike == 3) {
 			System.out.println("정답입니다. 프로그램을 종료합니다.");
 			break;}

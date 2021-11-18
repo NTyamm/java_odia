@@ -34,7 +34,7 @@ public class MethodArithmetricEx1 {
 	}
 	
 	//강사님
-	public static double arithmetic(int num, char op, int num2) {
+	public static double arithmetic(int num1, char op, int num2) {
 		switch(op) {
 		case '+': return num1 + num2;
 		case '-': return num1 - num2;

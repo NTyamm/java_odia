@@ -8,7 +8,7 @@ public class SwitchEvenEx1 {
 		/*Switch문을 이용하여 정수의 홀짝 여부를 판별하는 코드를 작성하세요.
 	    */
 	int num = 10;
-	Switch (num % 2) {
+	switch (num % 2) {
 		case 0:
 			System.out.println(num + "는 짝수");
 			break;
@@ -18,5 +18,3 @@ public class SwitchEvenEx1 {
 	}
 
 }
-
-Switch
