@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>선택자</title>
+  <style>
+    *{ ; /*1~6, body 태그, head 태그 포함 모든 태그*/ }
+    .box{   /* 6(클래스 중 box가 들어가는 것) */ }
+    a{ /* 2,4 두 개 */ }
+    #box{ /* 5(아이디가 box인 태그를 선택) */ }
+    .link{color:red/* 2,4 클래스가 link인 두 태그 */}
+  </style>
+</head>
+<body>
+  <p>안녕하세요</p> <!--1-->
+  <a href="//naver.com" class="link">네이버</a><br> <!--2-->
+  <div>다음</div><!--3-->
+  <a href="//google.com" class="link">구글</a><!--4-->
+  <div id="box">깃 헙</div><!--5-->
+  <button class="box">버튼</button><!--6-->
+</body>
+</html>

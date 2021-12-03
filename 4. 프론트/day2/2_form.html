@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form 예제</title>
+</head>
+<body>
+  get방식 전송
+  <form action="" method="get"> 
+    <input type="text" name="id"><br>
+    <input type="password" name="pw"><br>
+    <input type="password" name="pw2">
+    <input type="submit" value="전송">
+  </form>
+    post방식 전송
+    <form action="" method="POST"> 
+      <input type="text" name="id"><br>
+      <input type="password" name="pw"><br>
+      <input type="password" name="pw2">
+      <input type="submit" value="전송"></form>
+    파일 get으로 전송
+    <form action="" method="get"> 
+      <input type="file" name="file"><br>
+      <input type="submit" value="전송">
+    </form>
+    파일 post로 multipart/form-data로 전송<br>
+    <form action="" method="POST" enctype="multipart/form-data"> 
+      <input type="file" name="file"><br>
+      <input type="submit" value="전송">  
+    </form>
+    <form action="1_tabindex.html"> 
+      get방식 전송 <br>
+      <input type="text" name="id"><br>
+      <input type="password" name="pw"><br>
+      <input type="password" name="pw2">
+      <input type="submit" value="전송">
+    </form>
+    <form action="http://www.naver.com"> <!--이런 방식은 잘 사용x-->
+      get방식 전송 <br>
+      <input type="text" name="id"><br>
+      <input type="password" name="pw"><br>
+      <input type="password" name="pw2">
+      <input type="submit" value="전송">
+    </form>
+</body>
+</html>

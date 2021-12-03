@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>선택자 조합 예제</title>
+  <style>
+    /* div>a{color:red;} div 태그 밑의 a태그를 찾아서 빨갛게 만듬 */
+    /* div>div{color: forestgreen;} naver를 제외한 div 밑의 div 태그(박스1,박스2)들만 색이 바뀜*/
+    /* a.box{color:yellow;} 없음...*/
+    /* div .inner-box{color: violet;}  박스1이 선택됨*/
+    /* *[href='#']{color:gray;} 네이버가 선택됨*/
+    /* a:link{color:red;} */
+    /* a:visited{color:yellow;} */
+    /* a:hover{color:black;} */
+    /* input:focus{color:red;} */
+    /* #box>.inner-box:nth-child(3){color: red;} */
+    /* #box>.inner-box:first-child{color: red;} */
+    /* #box>.inner-box:nth-child(2n-1){color: red;} */
+    #box>.inner-box:last-child{color: red;}
+  </style>
+</head>
+<body>
+  <!--div 태그의 자식은 a태그-->
+  <!--div태그는 body태그의 자식요소 (o), 자손요소(o)
+    a태그는 body 태그의 자식요소(x), 자손요소(o)-->
+  <div>
+    <a href="#">네이버</a>
+    <div class="box">
+     <div class="inner-box">
+      박스1
+     </div>
+    </div>
+    <div>
+      박스2
+    </div>
+    <input type="text">
+    <div id="box">
+      <div class="inner-box">1</div>
+      <div class="inner-box">2</div>
+      <div class="inner-box">3</div>
+      <div class="inner-box">4</div>
+      <div class="inner-box">5</div>
+    </div>
+  </div>
+</body>
+</html>
