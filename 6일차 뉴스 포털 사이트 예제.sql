@@ -68,7 +68,7 @@ CREATE TABLE `comment` (
 	`co_up`	int	NULL,
 	`co_down`	int	NULL,
 	`co_date`	date	NULL,
-	`co_del`	cahr(1)	NULL,
+	`co_del`	char(1)	NULL,
 	`co_num2`	int	NOT NULL
 );
 

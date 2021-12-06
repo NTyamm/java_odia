@@ -21,7 +21,7 @@
 -- insert into subject(su_title, su_code) values('컴퓨터 개론','MSC001');
 
  -- 2000160001 교수님이 1번 과목을 강의한다. 이 내용을 lecture 테이블에 추가하는 코드를 작성하세요.
--- insert into lecture(le_pr_nu, le_su_nu) values (2000160001, 1); 
+insert into lecture(le_pr_nu, le_su_nu) values (2000160001, 1); 
 
 -- 2021160123 홍길동 학생이 1번 과목을 수강신청 했다. 이 내용을 추가하는 코드를 작성하세요.
 -- insert into course(co_st_num, co_su_num) values(2021160123, 1);
@@ -29,6 +29,24 @@
 
 -- 2000160001 교수님이 1번 과목을 강의할 강의 시간표의 일정 새로 나왔다. 월1,2로 결정되었고, 분반은 3분반이다.
 -- 다음을 실행하는 쿼리문을 작성하세요.
--- update subject set su_schedule='월 1, 2교시', su_class_num = 3 where su_num=1;
+update subject set su_schedule='월 1, 2교시', su_class_num = 3 where su_num=1;
 
-select*from university_odia.lecture
+-- select*from university_odia.lecture
+
+-- 홍길동 학생이 수강한 수강 과목의 수
+select count(co_st_num) as '홍길동 학생이 수강한 과목의 수'from course 
+	join student
+    on st_num = co_st_num
+	where st_name = '홍길동';
+    
+-- 컴퓨터 개론 3분반 현재 수강 신청 학생수를 확인
+select count(*) as '컴개론 3분반 현재인원' from course
+	join subject on co_su_num=su_num where su_title = '컴퓨터 개론' and su_class_num=3;
+    
+-- 이순신 교수님이 강의하는 강의 수
+select count(*) as '이순신 교수님의 강의 수' from lecture
+	join professor on le_pr_num=pr_num where pr_name = '이순신';
+    
+select count(*) as '이순신 교수님의 강의 수' from lecture
+	join (select*from professor where pr_name = '이순신') as tmp_professor on pr_num=le_pr_num;
+    

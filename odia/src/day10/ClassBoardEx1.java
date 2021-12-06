@@ -108,7 +108,6 @@ public class ClassBoardEx1 {
 		System.out.println("메뉴를 선택하세요(1~5) : ");
 		int menu = scan.nextInt();
 		return menu;
-		
 	}
 
 }

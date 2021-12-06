@@ -53,7 +53,7 @@ DROP TABLE IF EXISTS `university_odia`.`course`;
 CREATE TABLE `university_odia`.`course` (
   `co_num` INT NOT NULL AUTO_INCREMENT,
   `co_st_num` CHAR(10) NOT NULL,
-  `co_psu_num` INT NOT NULL,
+  `co_su_num` INT NOT NULL,
   `co_score` VARCHAR(4) NULL,
   PRIMARY KEY (`co_num`),
   INDEX `co_st_num_idx` (`co_st_num` ASC) VISIBLE,
@@ -61,19 +61,7 @@ CREATE TABLE `university_odia`.`course` (
   CONSTRAINT `co_st_num`
 	FOREIGN KEY (`co_st_num`) REFERENCES `university_odia`.`student` (`st_num`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `co_su_num`
-    FOREIGN KEY (`co_psu_num`) REFERENCES `university_odia`.`subject` (`su_num`) ON DELETE CASCADE ON UPDATE CASCADE);
-
-ALTER TABLE `university_odia`.`course` 
-DROP FOREIGN KEY `co_su_num`;
-ALTER TABLE `university_odia`.`course` 
-CHANGE COLUMN `co_psu_num` `co_su_num` INT NOT NULL ;
-ALTER TABLE `university_odia`.`course` 
-ADD CONSTRAINT `co_su_num`
-  FOREIGN KEY (`co_su_num`)
-  REFERENCES `university_odia`.`subject` (`su_num`)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE;
-
+    FOREIGN KEY (`co_su_num`) REFERENCES `university_odia`.`subject` (`su_num`) ON DELETE CASCADE ON UPDATE CASCADE);
 -- 이름 실수해서 수정함
 
 -- 7. lecture 테이블 생성
