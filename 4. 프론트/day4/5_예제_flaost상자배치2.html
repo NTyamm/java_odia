@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>여백있는 2등분 예제</title>
+  <style>
+    .box1{ border: 2px solid red; box-sizing: border-box; padding: 10px;}
+    .box1-1, .box1-2{ box-sizing:border-box; border: 2px solid blue; height: 500px; width:calc(50% - 5px); float: left;}
+    .box1::after{
+      clear: both; content:''; display:block; 
+    }
+    .box1-2{border-color: green; float:right;}
+    .box2{ border: 2px solid red; box-sizing: border-box; padding: 10px;}
+    .box2-1, .box2-2, .box2-3{ box-sizing:border-box; border: 2px solid blue; height: 500px; width:calc((100% - 20px) / 3); float: left;}
+    .box2-2{border-color: green; margin-left:10px;}
+    .box2-3{border-color: violet; float:right;}
+
+    .box2::after{
+      clear: both; content:''; display:block; 
+    }
+   
+  </style>
+</head>
+<body>
+  <div class="box1">
+    <div class="box1-1"></div>
+    <div class="box1-2"></div>
+  <div class="box2">
+    <div class="box2-1"></div>
+    <div class="box2-2"></div>
+    <div class="box2-3"></div>
+  </div>
+</body>
+</html>

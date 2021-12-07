@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>상자배치예제2
+  </title>
+   <style>
+     .box1{
+      height:100%;
+      box-sizing: border-box;
+      border: 2px solid red; background: white;
+      padding:10px;
+      
+    }
+    .box1-1{
+      box-sizing:border-box;
+      border: 5px solid blue;
+      height: 300px;
+      margin-bottom: 10px;
+    }
+    .box1-2{
+    box-sizing:border-box;
+      border: 5px solid green;
+      height: 300px;
+   }
+   
+   </style>
+
+</head>
+<body>
+  <!-- 클래스 이름 다르게 해서 배치 -->
+  <div class="box1">
+    <div class="box1-1"></div>
+    <div class="box1-2"></div>
+  </div>
+  <!-- 클래스 이름을 갖게 해서 배치할 경우 nth-child()이용 -->
+  <div class="box2">
+    <div class="box2-1"></div>
+    <div class="box2-2"></div>
+  </div>
+</body>
+</html>
