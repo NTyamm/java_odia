@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>박스 움직이기</title>
+  <style>
+   .box{border: 2px solid red; width: 100px; height: 100px; position: relative;
+    animation: movingbox; animation-duration: 3s; animation-iteration-count: infinite;}
+
+    @keyframes movingbox {
+      0%{left:0;}
+      /* left로 시작했으면 기준이 left라서 right는 사용할 수 없다 */
+      50%{left:calc(100% - 200px);}
+      100%{left:0;}
+    }
+    /* 부드럽게 움직이게 하려면...어떻게 해야 하지?? 지금은 먼..신호등임 */
+   
+     
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+</body>
+</html>

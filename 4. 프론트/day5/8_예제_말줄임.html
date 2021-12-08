@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>말줄임 예제</title>
+  <style>
+    .box1{
+      /* white-space는 텍스트를 한 줄로 정리하는 거라 두 줄로 나열할 땐 사용x */
+      width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      border: 1px solid black;
+    }
+    /* 오버플로우 기능을 쓸 땐 일단 hidden을 해 줘야 함 */
+    .box2{
+      width: 100px; overflow: hidden; display: -webkit-box;
+      -webkit-line-clamp: 2; -webkit-box-orient: vertical;/*두 줄 이상일 때 수직으로 박스 나열*/
+      text-overflow: ellipsis; border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <!-- 한 줄 말줄임 예제 -->
+  <div class="box1">
+    apple apple apple apple apple apple apple apple apple apple apple apple 
+  </div>
+  <!-- 두 둘 말줄임 예제 -->
+  <div class="box2">
+    apple apple apple apple apple apple apple apple apple apple apple apple 
+  </div>
+</body>
+</html>
