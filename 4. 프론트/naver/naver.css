@@ -1,0 +1,34 @@
+@charset "uft-8";
+*{padding: 0; margin: 0; list-style: none; text-decoration: none; color: #000;}
+
+/* 공통 */
+.container{
+  width: 1190px; margin: 0 auto; padding: 0 30px;
+}
+.container-fluid{
+  min-width: 1190px;
+}
+/* 네이버 웨일 박스 */
+.whale-box{ height: 49px; background: #f3f1ff;;}
+/* 네이버 검색창 박스  */
+.logo-area{width: 1190px; height:160px;position: relative;}
+.logo-area::after{clear: both; display: block; content: "";}
+/* 로고 박스 */
+.logo-box{width: 222px; height: 52px; box-sizing: border-box; float: left;
+  position: absolute; top:calc(50% - 26px); left:0; overflow: hidden;}
+  background-image: url(url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+}
+
+.logo-box:hover{cursor: pointer;}
+/* 서치 박스 */
+.search-input-box{width: 586px; height: 56px; border: 2px solid #19ce60; 
+  position: absolute; top:calc(50% - 26px); left: 268px; padding: 14px 30px;}
+/* 검색창 */
+.search{display: inline-block; width: 444px; height: 24px;}
+.search-btn{width: 56px; height: 56px; background-color: #19ce60; float: right;}
+/* 중간 메뉴박스 */
+.menu-area{ height: 52px; border-top: 1px solid greenyellow;background: #19CE60;}
+/* 컨텐츠 박스 */
+.content-area{ min-height: 1000px;background:paleturquoise; }
+ /* 푸터 박스 */
+.footer-box{ height: 423px; background: palevioletred;}
