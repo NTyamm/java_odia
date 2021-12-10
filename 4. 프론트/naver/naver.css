@@ -9,26 +9,67 @@
   min-width: 1190px;
 }
 /* 네이버 웨일 박스 */
-.whale-box{ height: 49px; background: #f3f1ff;;}
+.whale-box{ height: 49px; background: #f3f1ff;}
 /* 네이버 검색창 박스  */
 .logo-area{width: 1190px; height:160px;position: relative;}
 .logo-area::after{clear: both; display: block; content: "";}
 /* 로고 박스 */
 .logo-box{width: 222px; height: 52px; box-sizing: border-box; float: left;
-  position: absolute; top:calc(50% - 26px); left:0; overflow: hidden;}
-  background-image: url(url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+  position: absolute; top:calc(50% - 26px); left:0; overflow: hidden;
+  background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png); 
+  background-size: 444px 439px; background-position: 0 -158px;background-repeat: no-repeat;
+  vertical-align: top;
 }
-
 .logo-box:hover{cursor: pointer;}
 /* 서치 박스 */
-.search-input-box{width: 586px; height: 56px; border: 2px solid #19ce60; 
+.search-input-box{width: 586px; height: 56px;
   position: absolute; top:calc(50% - 26px); left: 268px; padding: 14px 30px;}
+.search-input-container-box{width: 100%; height: 100%; box-sizing: border-box; border: 2px solid #19ce60;}
+.search-input-container{height: 100%; width: 474px; background: yellow; padding:14px 15px; box-sizing: border-box;}
 /* 검색창 */
-.search{display: inline-block; width: 444px; height: 24px;}
-.search-btn{width: 56px; height: 56px; background-color: #19ce60; float: right;}
+.search{display: inline-block; border: none; font-size: 24px; background: purple;}
+.search:focus {outline: none;}
+.search-btn{width: 56px; height: 56px; background-color: #19ce60; position:absolute; right:0; top: 0; border: none;}
+.search-btn:hover{cursor: pointer;}
 /* 중간 메뉴박스 */
-.menu-area{ height: 52px; border-top: 1px solid greenyellow;background: #19CE60;}
+.menu-area{ height: 52px;  border-top: 1px solid #e4e8eb;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 12%);}
+.menubar{height: 52px; }
 /* 컨텐츠 박스 */
-.content-area{ min-height: 1000px;background:paleturquoise; }
- /* 푸터 박스 */
+.content-area{ min-height: 1000px;background:paleturquoise; padding: 20px 30px; }
+.content-area::after{clear: both; content: ''; display: block;}
+.content-left{height:1000px; width: 750px; float: left; background: #000;} /*얘들아...플롯된 박스들아...*/
+.content-right{height:1000px; width: 350px; float: right; background: #000;} /* 너네 사이의 여백은 뭐가 문제냐? */
+.cntnt-left-1{width: 100%; height: 135px; background: #fff; margin-bottom: 12px;}
+.cntnt-left-2{width: 100%; height: 367px;background: #fff;}
+.cntnt-right-1{width: 100%; height: 135px; background: #fff; margin-bottom: 12px; box-sizing: border-box;}
+/* 로그인 박스 */
+.login-box{padding: 16px 16px 12px 17px;}
+.login-msg-box{width: 100%; height: 16px; color: #202020; font-size: 12px; line-height: 16px; padding-left: 3px; box-sizing: border-box;}
+.login-btn{display: block; width: 100%; height: 43px; background-color: #19ce60; margin-top:11px; 
+  text-align: center; line-height: 43px;}
+.login-btn>span{color: white;  text-decoration: none; vertical-align:1px;}
+.login-btn>.naver{font-size: 16px; font-weight: 700;}
+.login-btn>.login{font-size: 13px; font-weight: 700; letter-spacing: -2px;}
+.login-btn:hover{cursor: pointer;}
+
+
+.cntnt-right-2{width: 100%; height: 49px; background: #fff; position: relative;}
+ /*좌측하단 버튼*/
+.cntnt-right-2 > .btn-box{
+  width: 47px; height: 24px; background:#FFF; position: absolute; top: 11px; right: 10px;
+}
+.cntnt-right-2 >.btn-box >.btn-prev,
+.cntnt-right-2 >.btn-box >.btn-next{
+  width: 24px; height: 24px; box-sizing: border-box;  border: 1px solid #e4e8eb; 
+  display: block;float: left; text-align: center;
+}
+.btn-box > .btn-next{ margin-left: -1px;}
+.btn-box i{ font-size: 20px; color: gray; line-height: 23px;}
+.btn-box > .btn-prev,
+.btn-box > .right-2-btn:hover i{cursor: pointer;}
+/* 푸터 박스 */
 .footer-box{ height: 423px; background: palevioletred;}
+
+
+/* 강사님이랑 나랑 하던 스타일이 달라서 중간에 강사님 거 따라가다가 좀 난리 났으니까 내가 한거 알아서 고쳐야함 */
