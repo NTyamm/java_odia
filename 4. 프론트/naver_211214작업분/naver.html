@@ -7,6 +7,7 @@
 	<title>NAVER</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 	<link rel="stylesheet" href="naver.css">
+	<script src="../js/jquery.min.js"></script>
 </head>
 <body>
 	<div class="whale-box container-fluid"></div>
@@ -82,6 +83,14 @@
 				<a href="#" class="btn-more">더보기</a>
 			</div>
 		</div>
+		<div class="service">
+			<div class="group-service">
+				<dl class="list-service">
+					<dt class="service-title">ㄱ-ㅁ</dt>
+					<dd class="service-data"></dd>
+				</dl>
+			</div>
+		</div>
 	</div>
 	<div class="contents-box container">
 		<div class="contents-l-box">
@@ -93,6 +102,10 @@
 			<div class="contents-l-box2">
 				<div class="group-issue">
 					<ul class="issue-area">
+						<li class="after">
+							<div class="link-media">머니투데이</div>
+							<a href="#" class="link-issue">[2021 부동산]① 비주류까지 다 오른 상반기, 돈줄 죄기에 얼어붙은 하반기</a>
+						</li>
 						<li class="after">
 							<div class="link-media">머니투데이</div>
 							<a href="#" class="link-issue">[2021 부동산]① 비주류까지 다 오른 상반기, 돈줄 죄기에 얼어붙은 하반기</a>
@@ -359,55 +372,73 @@
 				</div>
 			</div>
 			<div class="contents-l-box3">
-					<div class="theme-head">
-						<div class="group-title after">
-							<div class="group-title-l">
-							<strong class="title">오늘 읽을 만한 글</strong>	<span class="dsc"> 주제별로 분류된 다양한 글 모음</span>
-							</div>
-							<div class="group-title-r">
-								<div class="info">
-									1,762<span class="new">개의 글</span>
-								</div>
-								<a href="#" id="theme-set" class="btn-set">
-									관심주제 설정
-								</a>
-							</div>
+				<div class="theme-head">
+					<div class="group-title after">
+						<div class="group-title-l">
+							<span class="title">오늘 읽을만한 글</span>
+							<span class="dsc">주제별로 분류된 다양한 글 모음</span>
 						</div>
-						<div class="group-container">
-							<div class="btn-box">
-								<a href="" class="prev-btn"><i class="ico-btn"></i></a>
-								<a href="" class="next-btn"><i class="ico-btn"></i></a>
-							</div>
-							<div class="group-category">
-								<div class="main-category after">
-									<ul class="category-list">
-										<li class="category-item "> <a href="" class="category-link enter sel">엔터</a></li>
-										<li class="category-item"> <a href="" class="category-link sprots">스포츠</a></li>
-										<li class="category-item "> <a href="" class="category-link cargame">자동차</a></li>
-										<li class="category-item "> <a href="" class="category-link bboom">웹툰</a></li>
-										<li class="category-item "> <a href="" class="category-link finance">경제M</a></li>
-										<li class="category-item "> <a href="" class="category-link living">레시피</a></li>
-										<li class="category-item"> <a href="" class="category-link  gameapp">게임</a></li>
-										<li class="category-item "> <a href="" class="category-link movie">영화</a></li>
-										<li class="category-item "> <a href="" class="category-link job">JOB&</a></li>
-										<li class="category-item "> <a href="" class="category-link ittech">테크</a></li>
+						<div class="group-title-r">
+							<span class="info">
+								1762
+								<span class="new">개의 글</span>
+							</span>
+							<a href="#" class="btn-set">관심주제 설정</a>
+						</div>
+					</div>
+					<div class="group-container">
+						<div class="btn-box">
+							<a href="" class="prev-btn"></a>
+							<a href="" class="next-btn"></a>
+							<!-- 여기에 이전, 다음버튼 추가 -->
+						</div>
+						<div class="group-category">
+							<div class="main-category after">
+								<ul class="category-list">
+									<li class="category-item">
+										<a href="#" class="category-link enter">엔터</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link sports sel">스포츠</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link car">자동차</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link webtoon">웹툰</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link economy">경제M</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link recipe">레시피</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link game">게임</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link movie">영화</a>
+									</li>
+								</ul>
+								<ul class="category-list">
+									<li class="category-item">
+										<a href="#" class="category-link">JOB&</a>
+									</li>
+									<li class="category-item "> <a href="" class="category-link ittech">테크</a></li>
 										<li class="category-item "> <a href="" class="category-link travel">여행+</a></li>
 										<li class="category-item "> <a href="" class="category-link science">과학</a></li>
 										<li class="category-item "> <a href="" class="category-link livinghome">리빙</a></li>
 										<li class="category-item "> <a href="" class="category-link health">건강</a></li>
 										<li class="category-item "> <a href="" class="category-link business">비즈니스</a></li>
 										<li class="category-item"> <a href="" class="category-link  wedding">연애·결혼</a></li>
-	
-									</ul>
-								</div>
+										
+								</ul>
 							</div>
 						</div>
 					</div>
-					<div class="group-contents">
-						
-					</div>
+				</div>
+				<div class="theme-contents">내용</div>
 			</div>
-
 		</div>
 		<div class="contents-r-box">
 			<div class="contents-r-box1">
@@ -421,15 +452,13 @@
 				<div class="contents-view">
 					<ul class="contents-list">
 						<li class="contents-item">
-							<a href="https://search.naver.com/search.naver?sm=top_hty&fbm=0&ie=utf8&query=%EC%BD%94%EB%A1%9C%EB%82%9819" class="contents-link">
+							<a href="#" class="contents-link">
 								<i class="news-badge">이슈</i>
-								<span class="news">코로나바이러스감염증-19 현황</span></a>
+								<span class="news">코로나바이러스감염증-19 현황</span>
+							</a>
 						</li>
 						<li class="contents-item">
-							<a href="#" class="contents-link">부우우</a>
-						</li>
-						<li class="contents-item">
-							<a href="#" class="contents-link">힝잉</a>
+							<a href="#" class="contents-link">2</a>
 						</li>
 					</ul>
 				</div>
@@ -441,5 +470,10 @@
 		</div>
 	</div>
 	<footer class="footer-box container"></footer>
+	<script>
+		$('.menu-box .btn-more').on('click',function(){
+			$('.service').toggle();
+		})
+	</script>
 </body>
 </html>
