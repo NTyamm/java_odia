@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>+,-예제</title>
+  <script src="../js/jquery.min.js"></script>
+
+</head>
+<body>
+  <button class="minus">-</button>
+  <input type="text" name ="num" value="0">
+  <button class="plus">+</button>
+
+  <button class="minus1">-</button>
+  <span class="num1">0</span>
+  <button class="plus1">+</button>
+
+  <script>
+
+    $('.minus').on('click',function(){
+      var num = parseInt(0) - 1;
+      $('input[name=num]').val(num);
+    });
+    $('.plus').on('click',function(){
+      var num = parseInt(0) + 1;
+      $('input[name=num]').val(num);
+    })
+// 아래로는 강사님
+    // $('.minus1').on('click',function(){
+    //   var num1 = $('.num1').text();
+    //   //화면에 적힌 숫자를 문자열로 읽어옴
+    //   var num1 = parseInt(num1);
+    //   //읽어온 숫자 문자열을 정수로 전환
+    //   num1--;
+    //   //읽어온 숫자에서 1을 감소
+    //   $('input[name=num1]').text(num1);
+    // });
+    // $('.plus1').on('click',function(){
+    //   var num1 = $('.num1').text();
+    //   //화면에 적힌 숫자를 문자열로 읽어옴
+    //   var num1 = parseInt(num)
+    //   //읽어온 숫자 문자열을 정수로 전환
+    //   num1++;
+    //    //읽어온 숫자에서 1을 감소
+    //   $('.num').text(num1);
+    // })
+
+    $('button').click(function(){
+      var num1 = $('.num1').text();
+      num1 = parsInt(num1);
+      if($(this).text() == '-'{
+        num1--;
+      }else{
+        num1++;
+      }
+      $('.num1').text(num1);
+    })
+  </script>
+</body>
+</html>
+//다 개판이니까 강사님 코드 보고 복습^^~

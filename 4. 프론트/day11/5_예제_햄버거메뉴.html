@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <style>
+    *{padding: 0; margin: 0;}
+    a{text-decoration: none;}
+    .menubox{height: 50px; left: 0; right: 0; position: relative;}
+    .burgermenu{height: 50px; width: 50px; position: absolute; top: 0; right: 0; background-color:transparent; border: none;}
+    .fa-bars{font-size: 30px; color: grey; line-height: 50px; text-align: center;}
+    .burgerbox{width: 300px;top:0; bottom: 0; right:-300px;  background-color: #fff;float: right; border: 1px solid gray;
+    position: fixed; box-sizing: border-box;}
+    .main-menu>.menu-item{
+      height: 50px; margin-top: -1px; box-sizing: border-box;
+      border-top: 1px solid grey; border-bottom: 1px solid grey;
+      line-height: 48px; text-align: center; overflow: hidden;
+    }
+    .main-menu>.menu-item:first-child{margin-top: 48px;}
+    .main-menu>.menu-item .menu-item-close{height: 50px; width: 50px; position: absolute; top: 0; right: 0; background-color:transparent; border: none;}
+    .main-menu>.menu-item>.menu-link{display: block;height: 100%;}
+  </style>
+</head>
+<body>
+  <div class="menubox">
+    <a href="#" class="burgermenu"> 
+      <i class="fas fa-bars"></i>
+    </a>
+    <div class="burgerbox">
+      <ul class="main-menu">
+        <li class="menu-item">
+          <a href="#" class="menu-link">메뉴1</a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link">메뉴2</a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link">메뉴3</a>
+        </li>
+        <li class="menu-item menu-item-close">
+          <a href="#" class="btn-close"> 
+            <i class="fas fa-times"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </div>
+  <script>
+    $('.burgermenu').click(function(){
+      $('.burgerbox').animate({right:0})
+    });
+    $('.btn-close').click(function(){
+      $('.burgerbox').animate({right:'-302px'})
+    });
+  </script>
+</body>
+</html>
