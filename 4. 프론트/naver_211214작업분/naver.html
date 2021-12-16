@@ -471,9 +471,17 @@
 	</div>
 	<footer class="footer-box container"></footer>
 	<script>
-		$('.menu-box .btn-more').on('click',function(){
+	
+		$('.menu-box .btn-more').on('.click',function(){
 			$('.service').toggle();
-		})
+			var text = $('menu-box .btn-more').text();
+			if(text =='더보기'){
+				$('.menu-box .btn-more').text('접기');
+			}else{
+			$('.menu-box .btn-more').text('더보기');}
+		});
+	//흐바...왜 안되는거냐 지대짱남
+	
 	</script>
 </body>
 </html>
