@@ -130,10 +130,16 @@
 	background-size: 444px 439px; background-position: -83px -296px;
 	content: '';
 }
+.menu-container .btn-more .fold::after{
+	background-position: -70px 296px;
+}
+
 .menu-container .btn-more:hover{
 	text-decoration: underline;
 }
-
+.menu0container .btn-more>.fold{
+	color: #0ecd5a;
+}
 
 
 /* 컨텐츠 박스 */

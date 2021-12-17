@@ -80,7 +80,7 @@
 						<a href="#" class="menu-link">웹툰</a>
 					</li>
 				</ul>
-				<a href="#" class="btn-more">더보기</a>
+				<a href="#" class="btn btn-more">더보기</a>
 			</div>
 		</div>
 		<div class="service">
@@ -125,8 +125,8 @@
 				<div class="group-title after">
 					<div class="group-title-left">
 						<a href="#" class="link-newsstand">뉴스스탠드</a>
-						<a href="#" class="btn-sort" id="mySort">구독한 언론사</a>
-						<a href="#" class="btn-sort sort-on" id="allSort">전체언론사</a>
+						<a href="#" class="btn btn-sort" id="mySort">구독한 언론사</a>
+						<a href="#" class="btn btn-sort sort-on" id="allSort">전체언론사</a>
 					</div>
 					<div class="group-title-right">
 						<a href="#" class="link-icon"><i class="icon-list"></i></a>
@@ -388,8 +388,8 @@
 					</div>
 					<div class="group-container">
 						<div class="btn-box">
-							<a href="" class="prev-btn"></a>
-							<a href="" class="next-btn"></a>
+							<a href="" class="btn prev-btn"></a>
+							<a href="" class="btn next-btn"></a>
 							<!-- 여기에 이전, 다음버튼 추가 -->
 						</div>
 						<div class="group-category">
@@ -399,7 +399,7 @@
 										<a href="#" class="category-link enter">엔터</a>
 									</li>
 									<li class="category-item">
-										<a href="#" class="category-link sports sel">스포츠</a>
+										<a href="#" class="category-link sports">스포츠</a>
 									</li>
 									<li class="category-item">
 										<a href="#" class="category-link car">자동차</a>
@@ -421,16 +421,14 @@
 									</li>
 								</ul>
 								<ul class="category-list">
-									<li class="category-item">
-										<a href="#" class="category-link">JOB&</a>
-									</li>
+									<li class="category-item">	<a href="#" class="category-link">JOB&</a></li>
 									<li class="category-item "> <a href="" class="category-link ittech">테크</a></li>
-										<li class="category-item "> <a href="" class="category-link travel">여행+</a></li>
-										<li class="category-item "> <a href="" class="category-link science">과학</a></li>
-										<li class="category-item "> <a href="" class="category-link livinghome">리빙</a></li>
-										<li class="category-item "> <a href="" class="category-link health">건강</a></li>
-										<li class="category-item "> <a href="" class="category-link business">비즈니스</a></li>
-										<li class="category-item"> <a href="" class="category-link  wedding">연애·결혼</a></li>
+									<li class="category-item "> <a href="" class="category-link travel">여행+</a></li>
+									<li class="category-item "> <a href="" class="category-link science">과학</a></li>
+									<li class="category-item "> <a href="" class="category-link livinghome">리빙</a></li>
+									<li class="category-item "> <a href="" class="category-link health">건강</a></li>
+									<li class="category-item "> <a href="" class="category-link business">비즈니스</a></li>
+									<li class="category-item"> <a href="" class="category-link  wedding">연애·결혼</a></li>
 										
 								</ul>
 							</div>
@@ -463,24 +461,47 @@
 					</ul>
 				</div>
 				<div class="btn-box">
-					<a href="#" class="prev-btn"><i class="fas fa-angle-left"></i></a>
-					<a href="#" class="next-btn"><i class="fas fa-angle-right"></i></a>
+					<a href="#" class="btn prev-btn"><i class="fas fa-angle-left"></i></a>
+					<a href="#" class="btn next-btn"><i class="fas fa-angle-right"></i></a>
 				</div>
 			</div>
 		</div>
 	</div>
 	<footer class="footer-box container"></footer>
 	<script>
-	
-		$('.menu-box .btn-more').on('.click',function(){
-			$('.service').toggle();
-			var text = $('menu-box .btn-more').text();
-			if(text =='더보기'){
+	  //더보기버튼 접고열기
+		$('.menu-box .btn-more').on('.click',function(e){
+			e.preventDefault();
+			$('.service-box').toggle();
+			//지금 개판이야 ^^ 강사님거 보고 고치삼^^ 
+			if(!$(this)).hasClass('fold'){
 				$('.menu-box .btn-more').text('접기');
 			}else{
 			$('.menu-box .btn-more').text('더보기');}
-		});
-	//흐바...왜 안되는거냐 지대짱남
+			$(this).toggleClass('fold');
+			});
+		$('.btn').click(function(e){
+      e.preventDefault(); //기본 이벤트를 막습니다
+    })
+		$('.category-link').click(function(e){
+			e.preventDefault();
+			$('.category-link').removeClass('sel');
+			$(this).addClass('sel');
+		})
+		//중간메뉴 좌우버튼
+		var min = 0, max = 3
+    var num = min;
+		$('.contents-l-box3 .btn-box .btn').click(function(e){
+			e.preventDefault
+			console.log(1)
+      if($(this).hasClass('btn-prev')){
+			num3 = --num3 < min3 ? min3 : num3;
+			}else{
+			num3 = ++num > max3 ? max3 : num3;
+			}
+			$('.contents-l-box3 .main-category').animate({marginLeft:-750*num3});
+    });
+	//흐바...왜 안되는거냐 지대짱남 되는거 존나 하나도 없어~~~~~!~!!! 진심 하나도 없어~!~!~!~!~! 아무것도 안먹혀~~!~!~!
 	
 	</script>
 </body>

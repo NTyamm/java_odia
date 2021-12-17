@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>클릭색상변경 예제</title>
+  <script src="../js/jquery.min.js"></script>
+  <style>
+    .box{width: 100px; height: 50px; border: 1px solid salmon; background-color: #fff; padding: 0;}
+    .btn{
+      text-align: center;line-height: 50px;display: inline-block; text-decoration: none;
+      width: 100%; height: 100%; top:1px; right: 0;
+    }
+    .selected{ background-color: seagreen;	color: #fff !important; margin: 0 -1px;}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <a href="#" class="btn">버튼</a>
+  </div>
+  <script>
+    $('.btn').click(function(e){
+      e.preventDefault
+      $('.btn').toggleClass('selected');
+      });
+  </script>
+</body>
+</html>
