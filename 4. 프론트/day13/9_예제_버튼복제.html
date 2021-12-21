@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>버튼복제 예제</title>
+  <script src="../js/jquery.min.js"></script>
+</head>
+<body>
+  <div class="box">
+    <button class="btn">버튼추가</button>
+  </div>
+  
+  <script>
+    var num = 1;
+    /*
+    $('.btn').click(function(){
+      $('.box').after('<button class="btn">' + ++num+ '버튼추가</button>')
+    }); 
+    */ //추가된 버튼은 클릭해도 작동하지 않는다.
+
+    $(document).on('click','.btn',function(){
+      $('.box').append('<button class="btn">' + ++num+ '버튼추가</button>')
+    })
+    //.on('click')을 이용해 문서 자체에 기능을 부여해야 한다.
+  </script>
+</body>
+</html>
