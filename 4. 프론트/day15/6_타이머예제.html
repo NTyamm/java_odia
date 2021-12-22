@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>타이머 예제</title>
+  <script src="../js/jquery.min.js"></script>
+  <style>
+    .timer-box{width: 500px; padding: 10px;height: 50px; border: 1px solid black;
+    line-height: 50px; text-align: center;}
+  </style>
+</head>
+<body>
+  <!-- 화면에 1초마다 1,2,3,4,5...가 출력되도록 코드를 작성하세요. -->
+  <!-- 60dl ehlaus 1:00이 되도록 코드를 작성하세요 -->
+  <div class="timer-box">
+    <span class="hour">00</span> : <span class="minute">00</span> : <span class="second">00</span> : <span class="misec">00</span>
+  </div>
+  <button class="btn-start">시작</button>
+  <button class="btn-stop">멈춤</button>
+  <button class="btn-record">기록</button>
+  <button class="btn-reset">리셋</button>
+
+  <script>
+     var m = 0;
+     var s = 0;
+     var ms= 0;
+     var h = 0;
+     var timerId;
+    $(function(){
+      $('.btn-stop').hide();
+      $('.btn-start').click(function(){
+        $('.btn-start').toggle();
+        $('.btn-stop').toggle();
+        timerId = setInterval(function(){  
+          ++ms;
+          if(ms == 100){
+            ms=0;
+            ++s;
+          }
+          if(s == 60){
+            s=0;
+            ++m;
+          }
+          if(m == 60){
+            m=0;
+            ++h;
+          }
+          $('.second').text(addZero(s));
+          $('.minute').text(addZero(m));
+          $('.hour').text(addZero(h));
+          $('.misec').text(addZero(ms));
+        },10);
+      });
+      //중지버튼 클릭
+      $('.btn-stop').click(function(){
+        $('.btn-start').toggle();
+        $('.btn-stop').toggle();
+        clearInterval(timerId);
+      });
+    });
+    $('.btn-reset').click(function(){
+      $('.btn-stop').click();
+      ms = 0; s = 0; m = 0; h =0; 
+      $('.second').text(addZero(s));
+      $('.minute').text(addZero(m));
+      $('.hour').text(addZero(h));
+      $('.misec').text(addZero(ms));
+      /*
+      if($('.hour').text()==00 && $('.minute').text()==00 && $('.second').text()==00 && $('.misec').text()==00){
+        $('.btn-stop').hide(); $('.btn-start').show();
+      }
+      */ //이렇게 하는 것보다는 스탑버튼 클릭가능  훨씬 간단함
+    })
+    //기록버튼 클릭
+    var data= 지금 진행중인 시분초밀리초
+    $('.btn-record').click(function(){
+      데이터를 출력 > 어디에? 출력용 박스가 필요할 거 같은데...리스트를 만들게 하는 게 낫나??? 
+    })
+
+    function addZero(num, isMs){
+      if(isMs){
+        return num < 10 ?'00'+num : num < (100 ? '0'+num : num);
+      }
+      return num < 10 ? '0'+num : num;
+      /*
+      if(num<10){
+        return '0' + num;
+      }else{
+        return num;
+      }
+      */ //위랑 이거랑 같음
+    }
+  </script>
+</body>
+</html>
