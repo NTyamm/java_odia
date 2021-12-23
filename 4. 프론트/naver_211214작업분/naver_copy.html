@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NAVER</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<link rel="stylesheet" href="/naver_211214작업분/naver_copy.css">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/rolling.js"></script>
+</head>
+<body>
+	<div class="whale-box container-fluid"></div>
+	<div class="search-box container">
+		<div class="logo-box">
+			<a href="#" class="logo"></a>
+		</div>
+		<div class="search-input-box">
+			<form class="search-input-container-box">
+				<div class="search-input-container">
+					<input type="text" class="search-input">
+				</div>
+				<button class="search-btn"></button>
+			</form>
+		</div>
+	</div>
+	<div class="menu-box container-fluid">
+		<div class="service-box"></div>
+		<div class="menu-container-box container">
+			<!-- 메일~ 더보기전까지 메뉴 -->
+			<div class="menu-container">
+				<ul class="green-menu-box menu">
+					<li class="menu-item">
+						<a href="#" class="menu-link"><i class="icon-mail"></i>메일</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">카페</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">블로그</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">지식iN</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link"><i class="icon-shopping"></i></a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link"><i class="icon-shopping-live"></i></a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">Pay</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link"><i class="icon-tv"></i>TV</a>
+					</li>
+				</ul>
+				<ul class="black-menu-box menu">
+					<li class="menu-item">
+						<a href="#" class="menu-link">사전</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">뉴스</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">증권</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">부동산</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">지도</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">VIBE</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">책</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">웹툰</a>
+					</li>
+				</ul>
+				<a href="#" class="btn-more">더보기</a>
+			</div>
+		</div>
+	</div>
+	<div class="contents-box container">
+		<div class="contents-l-box">
+			<div class="contents-l-box1">
+				<a href="https://apply.iscu.ac.kr/" class="ad" target="_blank">
+					<img width="750" height="auto" src="https://ssl.pstatic.net/tveta/libs/1360/1360990/1e561ba05c0c51b31720_20211210114107418.jpg" alt="광고">
+				</a>
+			</div>
+			<div class="contents-l-box2">
+				<div class="group-issue">
+					<ul class="issue-area">
+						<li class="after">
+							<div class="link-media">머니투데이</div>
+							<a href="#" class="link-issue">[2021 부동산]① 비주류까지 다 오른 상반기, 돈줄 죄기에 얼어붙은 하반기</a>
+						</li>
+						<li class="after">
+							<div class="link-media">머니투데이</div>
+							<a href="#" class="link-issue">[2021 부동산]① 비주류까지 다 오른 상반기, 돈줄 죄기에 얼어붙은 하반기</a>
+						</li>
+						<li class="after">
+							<div class="link-media">머니투데이</div>
+							<a href="#" class="link-issue">[2021 부동산]① 비주류까지 다 오른 상반기, 돈줄 죄기에 얼어붙은 하반기</a>
+						</li>
+					</ul>
+					<div class="direct-area">
+						<a href="#" class="link-news">네이버뉴스</a>
+						<a href="#" class="link-enter">연예</a>
+						<a href="#" class="link-sports">스포츠</a>
+						<a href="#" class="link-economy">경제</a>
+					</div>
+				</div>
+				<div class="group-title after">
+					<div class="group-title-left">
+						<a href="#" class="link-newsstand">뉴스스탠드</a>
+						<a href="#" class="btn-sort" id="mySort">구독한 언론사</a>
+						<a href="#" class="btn-sort sort-on" id="allSort">전체언론사</a>
+					</div>
+					<div class="group-title-right">
+						<a href="#" class="link-icon"><i class="icon-list"></i></a>
+						<a href="#" class="link-icon on"><i class="icon-thumb"></i></a>
+						<a href="#" class="link-icon"><i class="icon-set"></i></a>
+					</div>
+				</div>
+				<div class="group-news">
+					<div class="frame-box">
+						<div class="line to-right1"></div>
+						<div class="line to-right2"></div>
+						<div class="line to-right3"></div>
+						<div class="line to-bottom1"></div>
+						<div class="line to-bottom2"></div>
+						<div class="line to-bottom3"></div>
+						<div class="line to-bottom4"></div>
+						<div class="line to-bottom5"></div>
+					</div>
+					<div class="row">
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+						<div class="thumb-box">
+							<a href="#" class="thumb">
+								<img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+							</a>
+							<div class="popup-wrap">
+								<a href="#" class="btn-popup">구독</a>
+								<a href="#" class="btn-popup">기사보기</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="contents-l-box3">
+				<div class="theme-head">
+					<div class="group-title after">
+						<div class="group-title-l">
+							<span class="title">오늘 읽을만한 글</span>
+							<span class="dsc">주제별로 분류된 다양한 글 모음</span>
+						</div>
+						<div class="group-title-r">
+							<span class="info">
+								1762
+								<span class="new">개의 글</span>
+							</span>
+							<a href="#" class="btn-set">관심주제 설정</a>
+						</div>
+					</div>
+					<div class="group-container">
+						<div class="btn-box">
+							<a href="#" class="btn btn-next"></a>
+							<a href="#" class="btn btn-prev"></a>
+						</div>
+						<div class="group-category">
+							<div class="main-category after">
+								<ul class="category-list">
+									<li class="category-item">
+										<a href="#" class="category-link enter">엔터</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link sports sel">스포츠</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link car">자동차</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link webtoon">웹툰</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link economy">경제M</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link recipe">레시피</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link game">게임</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link movie">영화</a>
+									</li>
+								</ul>
+								<ul class="category-list">
+									<li class="category-item">
+										<a href="#" class="category-link enter">JOB&</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link sports sel">스포츠</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link car">자동차</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link webtoon">웹툰</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link economy">경제M</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link recipe">레시피</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link game">게임</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link movie">영화</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="theme-contents">내용</div>
+			</div>
+		</div>
+		<div class="contents-r-box">
+			<div class="contents-r-box1">
+				<div class="title">네이버를 더 안전하고 편리하게 이용하세요</div>
+				<a href="#" class="login-link">
+					<span class="naver">NAVER</span>
+					<span class="login">로그인</span>
+				</a>
+			</div>
+			<div class="contents-r-box2">
+				<div class="contents-view">
+					<ul class="contents-list">
+						<li class="contents-item">
+							<a href="#" class="contents-link">
+								<i class="news-badge">이슈</i>
+								<span class="news">코로나바이러스감염증-19 현황</span>
+							</a>
+						</li>
+						<li class="contents-item">
+							<a href="#" class="contents-link">2</a>
+						</li>
+						<li class="contents-item">
+							<a href="#" class="contents-link">3</a>
+						</li>
+					</ul>
+					<div class="btn-box">
+						<a href="#" class="prev-btn"><i class="fas fa-angle-left"></i></a>
+						<a href="#" class="next-btn"><i class="fas fa-angle-right"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="footer-box container"></footer>
+	<script>
+		$('.menu-box .btn-more').on('click', function(e){
+			e.preventDefault();
+			$('.service-box').toggle();
+			
+			if(!$(this).hasClass('fold')){
+				$('.menu-box .btn-more').text('접기');
+			}else{
+				$('.menu-box .btn-more').text('더보기');
+			}
+			$(this).toggleClass('fold');
+		});
+		$('.btn').click(function(e){
+			e.preventDefault();
+		});
+		$('.contents-l-box3 .category-link').click(function(e){
+			e.preventDefault();
+			$('.contents-l-box3 .category-link').removeClass('sel');
+			$(this).addClass('sel');
+		});
+
+		var min3 = 0, max3 = 1;
+		var num3 = min3;
+
+		$('.contents-l-box3 .btn-box .btn').click(function(){
+			console.log(1)
+			if($(this).hasClass('btn-prev')){
+				num3 = --num3 < min3 ? min3 : num3;
+			}else{
+				num3 = ++num3 > max3 ? max3 : num3;
+			}
+			$('.contents-l-box3 .main-category').animate({marginLeft:-750 * num3});
+		});
+
+		//메뉴 탭 이동
+		//메뉴 클릭
+		var menuSelector = '.contents-l-box3 .category-item';
+		$(menuSelector).click(function(e){
+			e.preventDefault();
+			$(menuSelector).children().removeClass('sel');
+			$(this).children().addClass('sel');
+			var target = $(this).data('target');
+			$('.theme-contents>div').hide();
+			$(target).show();
+			
+			//이전/다음 버튼 처리
+			$('.contents-l-box3 .btn-prev').show();
+			$('.contents-l-box3 .btn-next').show();
+			//메뉴1이 클릭된 경우 이전 메뉴가 없기 때문에 이전 버튼을 감춤
+			var prevParentLength 
+				= $(menuSelector+' .sel').parent().prev().length;
+			var prevOldParentLength 
+				= $(menuSelector+' .sel').parents('.category-list').prev().length;
+			var nextParentLength 
+				= $(menuSelector+' .sel').parent().next().length;
+			var nextOldParentLength 
+				= $(menuSelector+' .sel').parents('.category-list').next().length;
+			if( prevParentLength == 0 &&  prevOldParentLength == 0){
+				$('.btn-prev').hide();
+			}
+			if( nextParentLength == 0 && nextOldParentLength == 0 ){
+				$('.btn-next').hide();
+			}
+		});
+		//이전버튼
+		$('.btn-prev').click(function(e){
+			e.preventDefault();
+			if( $(menuSelector+' .sel').parent().prev().length == 1){
+				$(menuSelector+' .sel').parent().prev().click();
+			}
+			else{
+				if($(menuSelector+' .sel').parents('.category-list').prev().length == 1){
+					$(menuSelector+' .sel')
+						.parents('.category-list').prev().children().last().children().click();
+					$('.main-category').animate({'margin-left':'0px'},500);
+				}
+			}
+		});
+		//다음버튼
+		$('.btn-next').click(function(e){
+			e.preventDefault();
+			if( $(menuSelector+' .sel').parent().next().length == 1){
+				$(menuSelector+' .sel').parent().next().click();
+			}
+			else{
+				if($(menuSelector+' .sel').parents('.category-list').next().length == 1){
+					$(menuSelector+' .sel').parents('.category-list')
+						.next().children().first().children().click();
+					var width = $('.contents-l-box3 .category-item .sel')
+						.parents('.category-list').width();
+					$('.container-menu').animate({'margin-left':'-'+width+'px'},500);
+				}
+			}
+		});
+		$('.category-list:first-of-type .category-item:first-child').children().click();
+	
+		//롤링기능
+		var issueAreaId;
+		issueAreaId = rollingToTop('.issue-area','li',2000,1000);
+		$('.issue-area').hover(function(){
+			clearInterval(issueAreaId);
+		},function(){
+			issueAreaId = rollingToTop('.issue-area','li',2000,1000);
+		});
+
+		var contentsId;
+
+		$(function(){
+      contentsId = rollingToLeft('.contents-view','contents-list','.contents-item', 2000, 1000);
+      $('.contents-view').hover(function(){
+        clearInterval(contentsId);
+      },function(){
+        contentsId=rollingToLeft('.contents-view','contents-list','.contents-item', 2000, 1000);
+      });
+      //>버튼 클릭
+      $('.contents-r-box2 .btn-next').click(function(e){
+        e.preventDefault();
+        if(!$('.contents-item').first().is(':animated')){
+          var width = $('.contents-view').width();
+          $('.contents-item').first().animate({marginLeft: -width},1000,function(){
+            $(this).removeAttr('style').detach().appendTo('.contents-list');
+          });
+        }
+      });
+      //<버튼 클릭
+      $('.contents-r-box2 .btn-prev').click(function(e){
+        e.preventDefault();
+        if(!$('.contents-item').first().is(':animated')){
+          var width = $('.contents-view').width();
+          $('.contents-item').last().detach().css('margin-left',-width+'px')
+           .prependTo('.contents-list').animate({marginLeft:0},1000);
+        }
+      })
+    });
+	</script>
+</body>
+</html>

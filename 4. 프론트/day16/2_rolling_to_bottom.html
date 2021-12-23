@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>롤링다운</title>
+   <script src="../js/jquery.min.js"></script>
+   <style>
+     .container{height: 50px; border: 1px solid black;overflow: hidden;}
+     .box{height: 50px; line-height: 50px;}
+     .box.box1{background: yellow;}
+     .box:first-child{margin-top: -50px;}
+     .box.box2{background: orange;}
+     .box.box3{background: red;}
+   </style>
+</head>
+<body>
+  <div class="container">
+    <div class="wrap-box">
+      <div class="box box1">1</div>
+      <div class="box box2">2</div>
+      <div class="box box3">3</div>
+    </div>
+  </div>
+
+  <script>
+    	var rollingId;
+   $(function(){
+		rollingId=startRolling();
+		//hover이벤트 등록
+		$('.container').hover(function(){
+		  //들어갈 땐 clearInterval을 통해 등록된 애니메이션을 제거
+			clearInterval(rollingId);
+		},function(){
+			//나올땐 setInterval을 통해 애니메이션을 등록
+			rollingId=startRolling();
+		});
+	 });
+	 function startRolling(){
+		 return setInterval(function(){
+			if(!$('.box').first().is(':animated')){
+			$('.box').first().animate({marginTop:0},1000,function(){
+				$(this).removeAttr('style');
+        $('.box').last().detach().prependTo('.wrap-box'); //this가 아니라 box의 마지막요소를 잡아와야 함
+			})
+		 }
+		},1500);
+	 };
+  </script>
+</body>
+</html>
