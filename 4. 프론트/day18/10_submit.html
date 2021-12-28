@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>submit()</title>
+  <script src="../js/jquery.min.js"></script>
+</head>
+<body>
+  <form action="">
+    <intput id="id">id</intput><br>
+    <input type="password" id="pw"><br>
+    <button type="submit">전송</button>
+  </form>
+  <script>
+    $('button[type=submit').click(function(){
+      console.log('클릭');
+      //type이 submit인 버튼을 클릭햇을 때 return false;면 submit이 실행되지 않아 서버로 데이터가 전송되지 않음 
+    })
+    
+    $('form').submit(function(){
+      console.log('전송')
+      return false; //서버로전송x/ 생략하거나 return true; 면 서버로 전송 
+    })
+    
+  </script>
+</body>
+</html>
