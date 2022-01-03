@@ -5,7 +5,7 @@
 <!-- DOCTYPE html은 이 파일이 html5 파일이라고 적어주는 것 -->
 <html>
 <head>
-	<title>Home</title>
+	<title>Test2</title>
 </head>
 <body>
 <h1>
@@ -16,18 +16,13 @@
 홈 컨트롤러에서 지정한 이름이 {}안의 이름과 일치하는지 봐야 함-->
 
 <P>  The time on the server is ${serverTime}. </P>
-<a href="/spring/test?num=1&name=홍길동">데이터 전송</a>
-<form action="/spring/test/form" method="get">
-	<h1>Get 방식으로 전송</h1>
-	<input type="text" name="num" placeholder="번호"><br>
-	<input type="text" name="name" placeholder="이름"><br>
-	<button type="submit">전송</button>
-</form>
-<form action="/spring/test/form" method="post">
-	<h1>Post 방식으로 전송</h1>
-	<input type="text" name="num" placeholder="번호"><br>
-	<input type="text" name="name" placeholder="이름"><br>
-	<button type="submit">전송</button>
+<h1>test2입니다</h1>
+<form action="/spring/test2"> <!-- form태그에서 get방식은 method 생략 가능 -->
+	<h1>Get 계산하기 전송</h1>
+	<input type="text" name="num1" placeholder="정수1" value="${num1}"><br>
+	<input type="text" name="num2" placeholder="정수2" value="${num2}"><br>
+	<input type="text" readonly value="${result}">
+	<button type="submit">확인</button>
 </form>
 </body>
 </html>
