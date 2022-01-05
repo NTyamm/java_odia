@@ -14,6 +14,9 @@
 	    <li class="nav-item">
 	      <a class="nav-link" href="/spring/login">로그인</a>
 	    </li>
+	    <li class="nav-item">
+    	  <a class="nav-link" href="<%= request.getContextPath()%>/signup">회원가입</a>
+    	</li>
 	  </ul>
 	</nav>
 </body>

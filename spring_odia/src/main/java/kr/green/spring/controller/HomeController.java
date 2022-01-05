@@ -42,6 +42,21 @@ public class HomeController {
 		mv.setViewName("/member/login");
 		return mv;
 	}
+	
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public ModelAndView signupGet(ModelAndView mv) {
+		System.out.println("/signup:get :");
+		mv.setViewName("/member/signup");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public ModelAndView signupPost(ModelAndView mv, MemberVO member) {
+		System.out.println("/signup:post :" + member);
+		mv.setViewName("/member/signup");
+		return mv;
+	}
+	//서비스로 보내는 방법 모 르 겠 다! 
 }
 
 
