@@ -5,21 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Sign Up</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-<!-- jquery -->
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<!-- 부트스트랩 -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <!-- date picker -->
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <!-- 우편번호 -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 </head>
 <body>
 <!-- 아이디 비번 비번확인 이름 성별 생일 주소 폰번호 입력받는 창 -->
- <form class="container signup">
+ <form class="container signup body" action="<%=request.getContextPath()%>/signup" method="post">
    <h1 class="title text-center">회원가입</h1>
    
    <div class="box" style="height: 100px; border: 1px solid black;">보증서주세요 감사합니다</div>
@@ -31,16 +26,16 @@
      </div>
     </div>
    <div class="form-group">
-     <input type="text" class="form-control" placeholder="아이디" name="me_id">
+     <input type="text" class="form-control" placeholder="아이디" name="me_id" value="${user.me_id}}">
    </div>
    <div class="form-group">
-    <input type="password" class="form-control" placeholder="비밀번호" name="me_pw">
+    <input type="password" class="form-control" placeholder="비밀번호" name="me_pw" value="${user.me_pw}">
   </div>
   <div class="form-group">
     <input type="password" class="form-control" placeholder="비밀번호확인" name="me_pw2">
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="이름" name="me_name">
+    <input type="text" class="form-control" placeholder="이름" name="me_name" value="${user.me_name}">
   </div>
   <div class="form-group">
    <div class="form-check-inline">
@@ -55,7 +50,7 @@
     </div>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="생년월일" name="me_birth" id="me_birth">
+    <input type="text" class="form-control" placeholder="생년월일" name="me_birth" id="birth">
   </div>
  
   <div class="form-group">
@@ -65,6 +60,7 @@
     </div>
     <input type="text" id="address" placeholder="주소" class="form-control mb-2">
     <input type="text" id="detailAddress" placeholder="상세주소" class="form-control mb-2">
+    <input type="hidden" name="me_address">
   </div>
   <div class="form-group">
     <input type="text" class="form-control" placeholder="전화번호" name="me_phone">
@@ -75,12 +71,12 @@
 
   <script> 
     $('form').submit(function(){
-      var id=$('[name=id]').val().trim();
-      var pw=$('[name=pw]').val().trim();
-      var pw2=$('[name=pw2]').val().trim();
-      var name=$('[name=name]').val().trim();
-      var birth=$('[name=birth]').val().trim();
-      var genderObj=$('[name=gender]:checked');
+      var id=$('[name=me_id]').val().trim();
+      var pw=$('[name=me_pw]').val().trim();
+      var pw2=$('[name=me_pw2]').val().trim();
+      var name=$('[name=me_name]').val().trim();
+      var birth=$('[name=me_birth]').val().trim();
+      var genderObj=$('[name=me_gender]:checked');
       var gender = genderObj.length == 0 ? '' : genderObj.val();
       var isAgree = $('[name=agree]').is(':checked');
       if(!isAgree){
@@ -90,12 +86,12 @@
       }
       if(id==''){
         alert('아이디를 입력하세요');
-        $('[name=id]').focus();
+        $('[name=me_id]').focus();
         return false;
       }
       if(pw==''){
         alert('비밀번호를 입력하세요');
-        $('[name=pw]').focus();
+        $('[name=me_pw]').focus();
         return false;
       }
       if(pw2!=pw){
@@ -105,22 +101,22 @@
       }
       if(name==''){
         alert('이름을 입력하세요');
-        $('[name=name]').focus();
+        $('[name=me_name]').focus();
         return false;
       }
       if(birth ==''){
         alert('생일을 입력하세요');
-        $('[name=birth]').focus();
+        $('[name=me_birth]').focus();
         return false;
       }
       if(gender ==''){
         alert('성별을 선택하세요');
-        $('[name=gender]').focus();
+        $('[name=me_gender]').focus();
         return false;
       }
       var address = $('#address').val()+' '+$('#detailAddress').val();
-      $('[name=address]').val(address);
-      return false;
+      $('[name=me_address]').val(address);
+      return true;
 
     });
 

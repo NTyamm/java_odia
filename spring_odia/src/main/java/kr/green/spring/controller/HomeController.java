@@ -38,25 +38,35 @@ public class HomeController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginPost(ModelAndView mv, MemberVO member) {
 		System.out.println("/login:post :" + member);
-		memberService.login(member);
+		MemberVO user = memberService.login(member);
+		System.out.println(user);
 		mv.setViewName("/member/login");
 		return mv;
 	}
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public ModelAndView signupGet(ModelAndView mv) {
+	public ModelAndView signupGet(ModelAndView mv, MemberVO user) {
 		System.out.println("/signup:get :");
 		mv.setViewName("/member/signup");
+		mv.addObject("user", user);//일회성 add임. 그래서 세션을 이용해 세션이 유지되는 동안 로그인 유지되게 함
 		return mv;
 	}
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public ModelAndView signupPost(ModelAndView mv, MemberVO member) {
-		System.out.println("/signup:post :" + member);
-		mv.setViewName("/member/signup");
+	public ModelAndView signupPost(ModelAndView mv, MemberVO user) {
+		//MemberVO user = new MemberVO();
+		//user.setMe_id(me_id);
+		//user.setMe_ibirth(me_birth);
+		System.out.println("/signup:post :" + user);
+		if(memberService.signup(user)) {
+			mv.setViewName("redirect:/");
+		}else {
+
+			mv.setViewName("redirect:/signup");
+		}
+		 
 		return mv;
 	}
-	//서비스로 보내는 방법 모 르 겠 다! 
 }
 
 
