@@ -1,5 +1,7 @@
 package kr.green.spring.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,8 +41,13 @@ public class HomeController {
 	public ModelAndView loginPost(ModelAndView mv, MemberVO member) {
 		System.out.println("/login:post :" + member);
 		MemberVO user = memberService.login(member);
-		System.out.println(user);
-		mv.setViewName("/member/login");
+		if(user==null) {
+			mv.setViewName("redirect:/login");
+		}else {
+			mv.addObject("user",user);
+			mv.setViewName("redirect:/");
+		}
+		
 		return mv;
 	}
 	
@@ -48,7 +55,6 @@ public class HomeController {
 	public ModelAndView signupGet(ModelAndView mv, MemberVO user) {
 		System.out.println("/signup:get :");
 		mv.setViewName("/member/signup");
-		mv.addObject("user", user);//일회성 add임. 그래서 세션을 이용해 세션이 유지되는 동안 로그인 유지되게 함
 		return mv;
 	}
 	
@@ -64,7 +70,15 @@ public class HomeController {
 
 			mv.setViewName("redirect:/signup");
 		}
-		 
+		return mv;
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public ModelAndView logoutGet(ModelAndView mv, HttpServletRequest request) {
+		System.out.println("/logout:get :");
+		//세션에 있는 유저정보를 해제
+		request.getSession().removeAttribute("user");
+		mv.setViewName("redirect:/");
 		return mv;
 	}
 }
