@@ -10,4 +10,23 @@
 						   #{board.bd_type},#{board.bd_me_id}, ifnull(max(bd_num),0)+1,'N'
 						   from board;
 	</insert>
+	<select id="getBoardList" resultType="kr.green.spring.vo.BoardVO">
+		select * from board where bd_type = #{type} and bd_del = 'N' order by bd_num desc
+	</select>
+	<select id="getBoard" resultType="kr.green.spring.vo.BoardVO">
+		select * from board where bd_num = #{bd_num} and bd_del = 'N' 
+	</select>
+	<update id="deleteBoard">
+		update board set
+		  bd_del = 'Y',
+		  bd_del_date = now()
+		  where bd_num = #{bd_num}
+	</update>
+	<update id="updateBoard">
+		update board set
+		  bd_title = #{board.bd_title},
+		  bd_contents = #{board.bd_contents},
+		  bd_up_date = #{board.bd_up_date}
+		where bd_num = #{board.bd_num}
+	</update>
 </mapper>
