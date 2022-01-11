@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.green.service.MemberService;
+import kr.green.green.vo.MemberVO;
 
 /**
  * Handles requests for the application home page.
@@ -27,14 +28,11 @@ public class HomeController {
     public ModelAndView main(ModelAndView mv) throws Exception{
         mv.setViewName("/main/home");
         mv.addObject("setHeader", "타일즈테스트");
+        //아래 코드는 연동 확인 후 지울 코드
+        //abc123은 샘플 데이터에 있는 회원아이디
+        MemberVO user = memberService.test("abc123");
+        System.out.println(user);
         return mv;
     }
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	@RequestMapping(value= {"/main/home","/home.do"})
-	public ModelAndView openTilesView(ModelAndView mv) throws Exception{
-	    mv.setViewName("/main/home");
-	    mv.addObject("setHeader", "타일즈");
-	    return mv;
-	}
+
 }

@@ -1,5 +1,9 @@
 package kr.green.green.service;
- 
+
+import kr.green.green.vo.MemberVO;
+
 public interface MemberService {
-    public String getEmail(String id);
+
+	MemberVO test(String string);
+    
 }
