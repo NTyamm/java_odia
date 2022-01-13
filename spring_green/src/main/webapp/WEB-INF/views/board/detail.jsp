@@ -11,15 +11,27 @@
  	<div class="body container">
  		<c:if test="${board != null}">
 	 		<div class="form group">
-	 			제목: <input type="text" class="form-control" name="db_title" readonly value="${board.db_title}">
+	 			<label>제목:</label>
+	 			<input type="text" class="form-control" name="db_title" readonly value="${board.bd_title}">
 	 		</div>
 	 		<div class="form group">
-	 			작성자: <input type="text" class="form-control" name="db_me_id" readonly value="${board.db_me_id}">
+	 			<label>작성자:</label>
+	 			<input type="text" class="form-control" name="db_me_id" readonly value="${board.bd_me_id}">
 	 		</div>
 	 		<div class="form group">
-	 			작성일: <input type="text" class="form-control" name="db_reg_date" readonly value="${board.db_reg_date}">
+	 			<label>작성일:</label>
+	 			<input type="text" class="form-control" name="db_reg_date" readonly value="${board.bd_reg_date_str}">
+	 		</div>
+	 		<div class="form group">
+	 			<label>내용:</label>
+	 			<textarea class="form-control" name="bd_contents" readonly>${board.bd_contents}</textarea>
 	 		</div>
  		</c:if>
+ 		<c:if test="${user.me_id == board.bd_me_id }">
+		  	<a href="<%=request.getContextPath() %>/board/modify?bd_num=${board.bd_num}"> 
+		  	  <button class="btn btn-outline-success">수정</button>
+		  	</a>
+	  	</c:if>
  		<c:if test="${board == null}">
 			<h1>없는 게시글이거나 삭제된 게시글입니다.</h1>
 		</c:if>

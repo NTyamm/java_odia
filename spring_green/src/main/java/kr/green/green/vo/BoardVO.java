@@ -22,5 +22,7 @@ public class BoardVO {
 	public String getBd_reg_date_str() {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd- HH:mm:ss");
 		return format.format(bd_reg_date);
-	}	
+	}
+
+	
 }
