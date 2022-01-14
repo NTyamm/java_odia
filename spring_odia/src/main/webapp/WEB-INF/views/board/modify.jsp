@@ -5,21 +5,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 수정</title>
+<title>게시판</title>
 </head>
 <body>
-<div class="body container">
-		<h1>게시글 수정</h1>
-		<form action="<%=request.getContextPath()%>/board/modify" method="post">
-		  <div class="form-group">
-			<input type="text" class="form-control" name="bd_title" value="${board.bd_title}" >
-	      </div>
-	      <div class="form-group">
-			<textarea class="form-control" name="bd_contents" rows="10">${board.bd_contents}</textarea>
-	      </div>
-	      <input type="hidden" name="bd_num" value="${board.bd_num}">
-		  <button class="form-control col-12">수정</button>
-		</form>
-	</div>
+<h1>게시글 수정</h1>
+
+<form action="<%=request.getContextPath()%>/board/modify" method="post" enctype="multipart/form-data">
+		<div class="form group">
+	 			<label>제목:</label>
+	 			<input type="text" class="form-control" name="bd_title" value="${board.bd_title}">
+	 		</div>
+	 		<div class="form group">
+	 			<label>내용:</label>
+	 			<textarea class="form-control" name="bd_contents" rows="10">${board.bd_contents}</textarea>
+	 		</div>
+	 		<!-- 파일 업로드창 추가 -->
+	    	<div class="form-group">
+		        <label>첨부파일</label>
+		        <input type="file" class="form-control" name="file"/>
+		         <input type="file" class="form-control" name="file"/>
+		    </div>
+	  <!-- 포스트 기능...등록버튼으로 -->
+	 	 <input type="hidden" name="bd_num" value="${board.bd_num }">
+	  	 <button class="btn btn-outline-success col-12">수정</button>
+	 </form>
 </body>
 </html>

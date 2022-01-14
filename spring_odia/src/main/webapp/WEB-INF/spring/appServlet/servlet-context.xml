@@ -21,45 +21,52 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="kr.green.spring.*" />
+	<context:component-scan base-package="kr.green.green.*" />
 	
+	<!-- 타일즈 ViewResolver 등록 및 우선순위 1등으로 설정 -->
 	<beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
     <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
     <beans:property name="order" value="1" /><!-- 순서를 우선으로 지정 -->
 	</beans:bean>
-	     
+	<!-- 타일즈 환경 설정파일 지정  -->	     
 	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-      <beans:property name="definitions">
-          <beans:list>
-              <beans:value>/WEB-INF/spring/tiles-def.xml</beans:value>
-          </beans:list>
-      </beans:property>
-  	</beans:bean>
+    <beans:property name="definitions">
+       <beans:list>
+           <beans:value>/WEB-INF/spring/tiles-def.xml</beans:value>
+       </beans:list>
+    </beans:property>
+	</beans:bean>
+	
 	<beans:bean id="loginInterceptor" 
-		class="kr.green.spring.interceptor.LoginInterceptor">
-	</beans:bean>
-	<beans:bean id="memberInterceptor" 
-		class="kr.green.spring.interceptor.MemberInterceptor">
-	</beans:bean>
-	<beans:bean id="guestInterceptor" 
-		class="kr.green.spring.interceptor.GuestInterceptor">
-	</beans:bean>
-	<!-- 등록된 인터셉터가 어떤url에 동작하는지 설정 -->
+		class="kr.green.green.interceptor.LoginInterceptor"></beans:bean>
 	<interceptors>
     <interceptor>
-        <mapping path="/login"/>
-        <beans:ref bean="loginInterceptor"/>
+	    <mapping path="/login"/>
+	    <beans:ref bean="loginInterceptor"/>
     </interceptor>
-    <interceptor>
+	</interceptors>
+	<beans:bean id="memberInterceptor" 
+	class="kr.green.green.interceptor.MemberInterceptor"></beans:bean>
+	<interceptors>
+	<interceptor>
         <mapping path="/board/register"/>
-        <mapping path="/board/delete"/>
         <mapping path="/board/modify"/>
+        <mapping path="/board/delete"/>
         <beans:ref bean="memberInterceptor"/>
-    </interceptor>
-    <interceptor>
-        <mapping path="/login"/>
+	</interceptor>
+	</interceptors>
+	<beans:bean id="guestInterceptor" 
+	class="kr.green.green.interceptor.GuestInterceptor"></beans:bean>
+	<interceptors>
+	<interceptor>
         <mapping path="/signup"/>
+        <mapping path="/login"/>
         <beans:ref bean="guestInterceptor"/>
-    </interceptor>
-</interceptors>
+	</interceptor>
+	</interceptors>
+	<!-- 첨부파일용 baens -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <!-- 업로드 최대 크기 10Mb -->
+	    <beans:property name="maxUploadSize" value="10485760"></beans:property>
+	</beans:bean>
 </beans:beans>
