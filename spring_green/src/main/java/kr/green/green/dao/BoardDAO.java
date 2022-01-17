@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import kr.green.green.vo.BoardVO;
+import kr.green.green.vo.FileVO;
 
 public interface BoardDAO {
 
@@ -12,6 +13,6 @@ public interface BoardDAO {
 	BoardVO selectBoard(@Param("bd_num")Integer bd_num);
 	void insertBoard(@Param("board")BoardVO board);
 	void updateBoard(@Param("board")BoardVO board);
-	
+	void insertFile(@Param("file")FileVO file);
 
 }

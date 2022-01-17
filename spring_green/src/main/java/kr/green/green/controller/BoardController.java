@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.green.service.BoardService;
@@ -44,14 +45,15 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public ModelAndView boardRegisterPOST(ModelAndView mv, BoardVO board, HttpServletRequest request) {
+	public ModelAndView boardRegisterPOST(ModelAndView mv, BoardVO board, 
+			HttpServletRequest request, List<MultipartFile> files) {
 		//로그인 회원 정보를 이용해 글쓴이를 등록하므로 로그인 세션의 유저정보 가지고 와야 함
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		//글쓴이를 로그인 세션의 유저 아이디로 설정함
 		board.setBd_me_id(user.getMe_id());
 		//공지사항이 아니기 때문에 "일반"으로 게시판 타입 지정해줘야 함
 		board.setBd_type("일반");
-		boardService.registerBoard(board, user);
+		boardService.registerBoard(board, user, files);
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
