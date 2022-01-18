@@ -24,18 +24,32 @@
 	 		</div>
 	 		<div class="form group">
 	 			<label>내용:</label>
-	 			<textarea class="form-control" name="bd_contents" readonly>${board.bd_contents}</textarea>
+	 			<div class="form-control" style="min-height:300px; height:auto;">${board.bd_contents}</div>
+	 		</div>
+	 		<div class="form group">
+	 			<label>첨부파일</label>
+		 			<c:forEach items="${fileList}" var="file">
+		 			  <a class="form-control" href="<%=request.getContextPath()%>/board/download?fileName=${file.fi_name}">${file.fi_ori_name}</a>
+		 			</c:forEach>
 	 		</div>
  		</c:if>
  		<c:if test="${user.me_id == board.bd_me_id }">
 		  	<a href="<%=request.getContextPath() %>/board/modify?bd_num=${board.bd_num}"> 
 		  	  <button class="btn btn-outline-success">수정</button>
 		  	</a>
+		  	<a href="<%=request.getContextPath() %>/board/delete?bd_num=${board.bd_num}"> 
+		  	  <button class="btn btn-outline-success">삭제</button>
+		  	</a>
 	  	</c:if>
+	  	<c:if test="${board.bd_type != '공지' && board.bd_num == board.bd_ori_num}">
+		  	<a href="<%=request.getContextPath()%>/board/register?bd_ori_num=${board.bd_num}"> 
+			  	 <button class="btn btn-outline-success">답글</button>
+			</a>
+		</c:if>
  		<c:if test="${board == null}">
 			<h1>없는 게시글이거나 삭제된 게시글입니다.</h1>
 		</c:if>
+		
  	</div>
-
 </body>
 </html>

@@ -4,8 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.green.green.dao.BoardDAO">
 	<select id="selectBoardList" resultType="kr.green.green.vo.BoardVO">
-		select * from board where bd_type= #{bd_type} and bd_del='N'
-			order by bd_num desc
+		select * from board where bd_type= #{cri.type} and bd_del='N' 
+			and bd_title like concat('%',#{cri.search},'%')
+			order by bd_ori_num desc, bd_num asc
+			limit #{cri.pageStart}, #{cri.perPageNum}
 		<!--일반게시판과 공지사항이 같은 bd공유하기 때문에 bd_type으로 구분  -->
 	</select>
 	<select id="selectBoard" resultType="kr.green.green.vo.BoardVO">
@@ -14,25 +16,47 @@
 	<insert id="insertBoard" useGeneratedKeys="true" 
 		keyProperty="board.bd_num"	
 		parameterType="kr.green.green.vo.BoardVO">
-		insert into
-			board(
-				bd_title,
-				bd_contents,
-				bd_me_id,
-				bd_reg_date,
-				bd_type,
-				bd_ori_num,
-				bd_del
-			)
-	 		select
-				#{board.bd_title}, 
-				#{board.bd_contents}, 
-				#{board.bd_me_id},
-				now(), 
-				#{board.bd_type}, 
-				ifnull(max(bd_num),0)+1,
-				'N'
-		from board;
+		<if test="board.bd_ori_num == 0">
+			insert into
+				board(
+					bd_title,
+					bd_contents,
+					bd_me_id,
+					bd_reg_date,
+					bd_type,
+					bd_ori_num,
+					bd_del
+				)
+		 		select
+					#{board.bd_title}, 
+					#{board.bd_contents}, 
+					#{board.bd_me_id},
+					now(), 
+					#{board.bd_type}, 
+					ifnull(max(bd_num),0)+1,
+					'N'
+			from board;
+		</if>
+		<if test="board.bd_ori_num != 0">
+			insert into
+				board(
+					bd_title,
+					bd_contents,
+					bd_me_id,
+					bd_reg_date,
+					bd_type,
+					bd_ori_num,
+					bd_del
+				)
+		 		values(
+					#{board.bd_title}, 
+					#{board.bd_contents}, 
+					#{board.bd_me_id},
+					now(), 
+					#{board.bd_type}, 
+					#{board.bd_ori_num },
+					'N')
+		</if>
 	</insert>
 
 	<update id="updateBoard">
@@ -42,8 +66,27 @@
 			bd_up_date = now()
 		where bd_num = #{board.bd_num}
 	</update>
+	<update id="deleteBoard">
+		update board set
+			bd_del = 'Y',
+			bd_del_date = now()
+		where bd_num = #{bd_num}
+	</update>
  	<insert id="insertFile">
  		insert into file(fi_ori_name, fi_name, fi_bd_num)
  		values(#{file.fi_ori_name}, #{file.fi_name}, #{file.fi_bd_num})
  	</insert>
+ 	<select id="selectFileList" resultType="kr.green.green.vo.FileVO">
+ 		select * from file where fi_bd_num=#{bd_num} and (fi_del != 'Y' || fi_del is null)
+ 	</select>
+ 	<update id="deleteFile">
+ 		update file set
+ 			fi_del='Y',
+ 			fi_del_date=now()
+ 		where fi_num=#{fi_num}
+ 	</update>
+ 	<select id="selectCountBoard" resultType="int">
+ 		select count(*) from board 
+ 			where bd_type =#{cri.type} and bd_del = 'N' and bd_title like concat('%',#{cri.search},'%')
+ 	</select>
 </mapper>

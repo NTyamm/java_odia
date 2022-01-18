@@ -22,6 +22,9 @@
 	        	<a class="nav-link" href="<%=request.getContextPath()%>/logout">로그아웃</a>
 	      	</li> 
       	</c:if>
+	      	<li class="nav-item">
+	        	<a class="nav-link" href="<%=request.getContextPath()%>/board/list?type=공지">공지사항</a>
+	      	</li> 
  	     	<li class="nav-item">
 	        	<a class="nav-link" href="<%=request.getContextPath()%>/board/list">게시판</a>
 	      	</li> 
