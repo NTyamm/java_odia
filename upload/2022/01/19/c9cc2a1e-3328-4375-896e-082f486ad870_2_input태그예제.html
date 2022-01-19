@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>input 태그 예제</title>
+</head>
+<body>
+<form action="">
+  <input type="text" neme="search" placeholder="문자를 입력하세요."><br>
+  <input type="password" neme="search" placeholder="비밀번호를 입력하세요."><br>
+  좋아하는 과일은?(복수선택 가능) <br>
+  <input type="checkbox" name ="fruit" vaulue="apple" checked>사과 <br>
+  <input type="checkbox" name ="fruit" vaulue="orange">오렌지 <br>
+  <input type="checkbox" name ="fruit" vaulue="banana">바나나 <br>
+  <input type="checkbox" name ="fruit" vaulue="grape">포도 <br>
+  성별은? <br>
+  <input type="radio" name="gender" value="M" checked> 남자 <br>
+  <input type="radio" name="gender" value="W"> 여자 <br>
+  <input type="color" name="color" value="#540404"> <br>
+  <input type="month" name="month"> <br>
+  <input type="week" name="week"> <br>
+  <input type="date" name="date"> <br>
+  <input type="datetime" name="datetime"> <br>
+  <input type="datetime-local" name="datetime-local"><br>
+  <input type="time" name="time"><br>
+  <input type="file" name="file"><br>
+  <!-- 이것이 주석!! 단축키는 ctrl+/
+  ../ : 상위폴더, ./ : 현재폴더
+  ../나 ./는 상대경로
+  / : 절대경로인데, 오픈 폴더로 연 폴더를 기준으로 달라짐 -->
+  <input type="image" src="img/day1_img1_cat1.jpg" alt="이미지가 없어요">
+  <input type="image" src="../img/day1_img1_cat1.jpg" alt="이미지가 없어요">
+  <input type="image" src="http://upload2.inven.co.kr/upload/2019/08/06/bbs/i15657913524.jpg" alt="이미지가 없어요"><br>
+  <input type="search" name="serch"><br>
+  <input type="number" name="number" min="1" max="10"><br>
+  1<input type="range" name="range" min="1" max="5">6<br>
+  <input type="hidden" name="hidden"><br>
+  <input type="email" name="email" placeholder="email을 입력하세요"><br>
+  <input type="url" name="url" placeholder="url주소를 입력하세요"><br>
+  <input type="button" value="일반버튼">
+  <input type="submit" value="전송">
+  <input type="reset" value="리셋">
+</form>
+</body>
+
+</html>

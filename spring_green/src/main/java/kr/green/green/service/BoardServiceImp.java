@@ -22,7 +22,8 @@ public class BoardServiceImp implements BoardService {
 	@Autowired
 	BoardDAO boardDao;
 	
-	String uploadPath = "C:\\Users\\MASTER\\Desktop\\java_odia\\upload";
+//	String uploadPath = "C:\\Users\\MASTER\\Desktop\\java_odia\\upload";
+	String uploadPath = "D:\\JAVA_ODIA\\java_odia\\upload";
 
 	@Override
 	public List<BoardVO> getBoardList(Criteria cri) {
@@ -85,6 +86,7 @@ public class BoardServiceImp implements BoardService {
 	}
 	@Override
 	public void deleteBoard(Integer bd_num, MemberVO user) {
+		
 		if(bd_num == null || bd_num <= 0)
 			return;
 		BoardVO board = boardDao.selectBoard(bd_num);
@@ -92,7 +94,14 @@ public class BoardServiceImp implements BoardService {
 			return;
 		if(user != null && board.getBd_me_id().equals(user.getMe_id()))
 			boardDao.deleteBoard(bd_num);
-		
+		List<String> authorityAdmin = new ArrayList<String>();
+		authorityAdmin.add("관리자");
+		authorityAdmin.add("슈퍼 관리자");
+		if( board.getBd_type().equals("공지") &&
+				authorityAdmin.indexOf(user.getMe_authority()) < 0) {
+			return;
+		}
+		boardDao.deleteBoard(bd_num);
 		List<FileVO> fileList = boardDao.selectFileList(bd_num);
 		deleteFile(fileList);
 	}
@@ -137,5 +146,11 @@ public class BoardServiceImp implements BoardService {
 	@Override
 	public int getTotalCount(Criteria cri) {
 		return boardDao.selectCountBoard(cri);
+	}
+
+	@Override
+	public void updateViews(Integer bd_num) {
+		boardDao.updateViews(bd_num);
+		
 	}
 }

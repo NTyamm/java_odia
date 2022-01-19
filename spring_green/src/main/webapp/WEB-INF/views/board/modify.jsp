@@ -23,7 +23,7 @@
 	 </div>
 	 	
 	  <!-- 포스트 기능...등록버튼으로 -->
-	 	 <input type="hidden" name="bd_num" value="${board.bd_num }">
+	 	 <input type="hidden" name="bd_num" value="${board.bd_num}">
 	 	 <div class="form-group attachment">
 	 	 	<c:forEach items="${fileList}" var="file"> 
 		 	 	<div class="form-control">

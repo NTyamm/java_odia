@@ -29,6 +29,7 @@
 	       <th>제목</th>
 	       <th>작성자</th>
 	       <th>작성일</th>
+	       <th>조회수</th>
 	     </tr>
 	   </thead>
 	   <tbody>
@@ -48,6 +49,7 @@
 		       </c:if>
 		       <td>${board.bd_me_id}</td>
 		       <td>${board.bd_reg_date_str}</td> <!-- SimpleDateFormat 이용해 Date 표기형식 변경된 것을 _str 붙여서 반영 -->
+		       <td>${board.bd_views}</td> <!-- 조회수 추가함 -->
 		     </tr>
 	     </c:forEach>
 	   </tbody>

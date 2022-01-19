@@ -14,9 +14,9 @@ public interface BoardService {
 
 	BoardVO getBoard(Integer bd_num);
 	//????이게맞ㄴㅏ?? 유저빼고 파일에 throws exception?
-	void registerBoard(BoardVO board, List<MultipartFile> files)throws Exception;;
+	void registerBoard(BoardVO board, List<MultipartFile> files2, MemberVO user)throws Exception;
 
-	void modifyBoard(BoardVO board, MemberVO user);
+	void modifyBoard(BoardVO board, List<MultipartFile> files2, Integer[] fileNums);
 
 	void deleteBoard(Integer bd_num, MemberVO user);
 

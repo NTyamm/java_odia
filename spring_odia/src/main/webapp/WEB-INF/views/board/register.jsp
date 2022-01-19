@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+ <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+ <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -19,12 +21,19 @@
 		 <!-- 파일 업로드창 추가 -->
 	    <div class="form-group">
 	        <label>첨부파일</label>
-	        <input type="file" class="form-control" name="files"/>
-	         <input type="file" class="form-control" name="files"/>
+	        <input type="file" class="form-control" name="files2"/>
+	        <input type="file" class="form-control" name="files2"/>
+	        <input type="file" class="form-control" name="files2"/>
 	    </div>
 	  <!-- 포스트 기능...등록버튼으로 -->
 	  	 <button class="btn btn-outline-success col-12">등록</button>
 	 </form>
-	
+	 <script>
+      $('[name=bd_contents]').summernote({
+        placeholder: 'Hello Bootstrap 4',
+        tabsize: 2,
+        height: 400
+      });
+    </script>
 </body>
 </html>

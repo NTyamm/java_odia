@@ -34,12 +34,14 @@ public class BoardController {
 
 	@Autowired //서비스 인터페이스 연결 필요
 	BoardService boardService;
+	
+//	String uploadPath = "C:\\Users\\MASTER\\Desktop\\java_odia\\upload";
+	String uploadPath = "D:\\JAVA_ODIA\\java_odia\\upload";
 		
 	@RequestMapping(value="/list")
 //	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
 		cri.setPerPageNum(5);
-		System.out.println(cri);
 		//등록된 게시글 중 현재 페이지와 일치하는 게시글을 가져옴
 		List<BoardVO> list = boardService.getBoardList(cri);
 		//페이지메이커를 만들어서 화면에 전달해야 함. 
@@ -57,6 +59,9 @@ public class BoardController {
 		BoardVO board = boardService.getBoard(bd_num);
 		//게시글 번호와 일치하는 첨부파일을 가져오라고 시킴
 		List<FileVO> fileList = boardService.getFileList(bd_num);
+		//게시글증가
+		boardService.updateViews(bd_num);
+		//가져온 게시글을 화면에 전달
 		mv.addObject("fileList",fileList);
 		mv.addObject("board",board);
 		mv.setViewName("/board/detail");
@@ -76,9 +81,19 @@ public class BoardController {
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		//글쓴이를 로그인 세션의 유저 아이디로 설정함
 		board.setBd_me_id(user.getMe_id());
-		boardService.registerBoard(board, user, files2);
-		mv.addObject("type", board.getBd_type());
-		mv.setViewName("redirect:/board/list");
+		List<String> authorityAdmin = new ArrayList<String>();
+		authorityAdmin.add("관리자");
+		authorityAdmin.add("슈퍼관리자");
+		//공지사항을 작성하는데 권한이 회원인 경우
+		if(	board.getBd_type().equals("공지")&&
+			authorityAdmin.indexOf(user.getMe_authority()) < 0) {
+			mv.addObject("type","공지");
+			mv.setViewName("redirect:/board/list");
+		}else {
+			boardService.registerBoard(board, user, files2);
+			mv.addObject("type", board.getBd_type());
+			mv.setViewName("redirect:/board/list");
+		}
 		return mv;
 	}
 	@RequestMapping(value = "/modify", method  = RequestMethod.GET)
@@ -88,14 +103,6 @@ public class BoardController {
 		//게시글 번호에 따른 게시글 정보를 가져옴
 		BoardVO board = boardService.getBoard(bd_num);
 		//이번에는 컨트롤러에서 유저정보 체크를 함
-		if(user!=null && board !=null && user.getMe_id().equals(board.getBd_me_id())) {
-			mv.addObject("board",board);
-			mv.setViewName("/board/modify");
-		}else {
-		//유저정보가 일치하지 않을시 게시글 상세로 보냄
-			mv.addObject("bd_num", bd_num);
-			mv.setViewName("redirect:/board/detail");
-		}
 		//첨부파일을 가져옴
 		List<FileVO> fileList = boardService.getFileList(bd_num);
 		mv.addObject("fileList",fileList);
@@ -103,7 +110,7 @@ public class BoardController {
 	}
 	@RequestMapping(value="/modify", method = RequestMethod.POST)
 	public ModelAndView boardModifyPOST(ModelAndView mv, BoardVO board, 
-			HttpServletRequest request, List<MultipartFile> files2, Integer [] fileNums) {
+			List<MultipartFile> files2, Integer [] fileNums) {
 		//기존 첨부파일 번호인 fileNums 확인. 정수는 배열 Integer []와 향상된 for문을 이용해야함
 //		if(fileNums != null) {
 //			for(Integer tmp : fileNums)
@@ -114,7 +121,7 @@ public class BoardController {
 		//번호에 맞는 게시글을 화면에 추가해줌
 		mv.addObject("bd_num", board.getBd_num());
 		mv.setViewName("redirect:/board/detail");
-		return mv;
+			return mv;
 	}
 	@RequestMapping(value = "/delete", method  = RequestMethod.GET)
 	public ModelAndView boardDeleteGet(ModelAndView mv, Integer bd_num, 
@@ -130,7 +137,7 @@ public class BoardController {
 	public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
 	    InputStream in = null;
 	    ResponseEntity<byte[]> entity = null;
-	    String uploadPath = "C:\\Users\\MASTER\\Desktop\\java_odia\\upload";
+	    
 	    try{
 	        String FormatName = fileName.substring(fileName.lastIndexOf(".")+1);
 	        HttpHeaders headers = new HttpHeaders();

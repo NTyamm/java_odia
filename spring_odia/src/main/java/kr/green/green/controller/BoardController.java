@@ -57,7 +57,7 @@ public class BoardController {
 	}
 	@RequestMapping(value="/register", method = RequestMethod.POST)
 	public ModelAndView boardRegisterPOST(ModelAndView mv, BoardVO board, 
-			HttpServletRequest request, List<MultipartFile> files) throws Exception {
+			HttpServletRequest request, List<MultipartFile> files2) throws Exception {
 		//로그인 회원 정보를 이용해 글쓴이를 등록하므로 로그인 세션의 유저정보 가지고 와야 함
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		//글쓴이를 로그인 세션의 유저 아이디로 설정함
@@ -65,8 +65,9 @@ public class BoardController {
 		//공지사항이 아니기 때문에 "일반"으로 게시판 타입 지정해줘야 함
 		board.setBd_type("일반");
 		//???여기서 왜 유저정보가 사라지고 갑자기 파일스가 되는거지?????
-		boardService.registerBoard(board, files);
+		boardService.registerBoard(board, files2, user);
 		mv.setViewName("redirect:/board/list");
+		System.out.println("메롱");
 		return mv;
 	}
 	@RequestMapping(value = "/modify", method  = RequestMethod.GET)
@@ -75,9 +76,13 @@ public class BoardController {
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		//게시글 번호에 따른 게시글 정보를 가져옴
 		BoardVO board = boardService.getBoard(bd_num);
+		List<FileVO> filelist = boardService.getFileList(bd_num);
+		
 		//이번에는 컨트롤러에서 유저정보 체크를 함
 		if(user!=null && board !=null && user.getMe_id().equals(board.getBd_me_id())) {
+			System.out.println(filelist);
 			mv.addObject("board",board);
+			mv.addObject("fileList",filelist);
 			mv.setViewName("/board/modify");
 		}else {
 		//유저정보가 일치하지 않을시 게시글 상세로 보냄
@@ -87,10 +92,11 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value="/modify", method = RequestMethod.POST)
-	public ModelAndView boardModifyPOST(ModelAndView mv, BoardVO board, HttpServletRequest request) {
-		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+	public ModelAndView boardModifyPOST(ModelAndView mv, BoardVO board
+			,List<MultipartFile> files2, Integer [] fileNums) {
 //		//게시판을 업데이트 함
-		boardService.modifyBoard(board,user);
+		
+		boardService.modifyBoard(board,files2, fileNums);
 //		//번호에 맞는 게시글을 화면에 추가해줌
 		mv.addObject("bd_num", board.getBd_num());
 		mv.setViewName("redirect:/board/detail");
@@ -102,13 +108,12 @@ public class BoardController {
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 		boardService.deleteBoard(bd_num, user);
 		mv.setViewName("redirect:/board/list");
-		
 		return mv;
 	}
 	@ResponseBody
 	@RequestMapping("/download")
 	public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
-		String uploadPath = "C:\\Users\\MASTER\\Desktop\\java_odia"; //업로드된곳
+		String uploadPath = "D:\\JAVA_ODIA\\java_odia\\upload"; //업로드된곳
 	    InputStream in = null;
 	    ResponseEntity<byte[]> entity = null;
 	    try{
