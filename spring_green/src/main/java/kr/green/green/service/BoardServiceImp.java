@@ -22,8 +22,8 @@ public class BoardServiceImp implements BoardService {
 	@Autowired
 	BoardDAO boardDao;
 	
-//	String uploadPath = "C:\\Users\\MASTER\\Desktop\\java_odia\\upload";
-	String uploadPath = "D:\\JAVA_ODIA\\java_odia\\upload";
+	String uploadPath = "C:\\Users\\MASTER\\Desktop\\java_odia\\upload";
+//	String uploadPath = "D:\\JAVA_ODIA\\java_odia\\upload";
 
 	@Override
 	public List<BoardVO> getBoardList(Criteria cri) {

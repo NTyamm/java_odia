@@ -35,8 +35,8 @@ public class BoardController {
 	@Autowired //서비스 인터페이스 연결 필요
 	BoardService boardService;
 	
-//	String uploadPath = "C:\\Users\\MASTER\\Desktop\\java_odia\\upload";
-	String uploadPath = "D:\\JAVA_ODIA\\java_odia\\upload";
+	String uploadPath = "C:\\Users\\MASTER\\Desktop\\java_odia\\upload";
+//	String uploadPath = "D:\\JAVA_ODIA\\java_odia\\upload";
 		
 	@RequestMapping(value="/list")
 //	@RequestMapping(value="/list", method=RequestMethod.GET)

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.green.dao.BoardDAO;
+import kr.green.green.pagination.Criteria;
 import kr.green.green.utils.UploadFileUtils;
 import kr.green.green.vo.BoardVO;
 import kr.green.green.vo.FileVO;
@@ -21,11 +22,12 @@ public class BoardServiceImp implements BoardService {
 	@Autowired
 	BoardDAO boardDao;
 	//업로드할 경로. 학원과 집에서 다르게 설정해야 함
-	String uploadPath = "D:\\JAVA_ODIA\\java_odia\\upload";
+//	String uploadPath = "D:\\JAVA_ODIA\\java_odia\\upload";
+	String uploadPath = "C:\\Users\\MASTER\\Desktop\\java_odia\\upload";
 
 	@Override
-	public List<BoardVO> getBoardList(String bd_type) {
-		return boardDao.selectBoardList(bd_type);
+	public List<BoardVO> getBoardList(String bd_type, Criteria cri) {
+		return boardDao.selectBoardList(bd_type, cri);
 	}
 
 	@Override
@@ -128,8 +130,6 @@ public class BoardServiceImp implements BoardService {
 			}
 		}
 	}
-
-	
 	
 	@Override
 	public void deleteBoard(Integer bd_num, MemberVO user) {
@@ -140,6 +140,7 @@ public class BoardServiceImp implements BoardService {
 			return;
 		if(user != null && board.getBd_me_id().equals(user.getMe_id()))
 			boardDao.deleteBoard(bd_num);
+		//첨부파일 삭제를 위해 해당 게시글과 일치하는 첨부파일들을 가져옴
 			List<FileVO> fileList = boardDao.selectFileList(bd_num);
 			deleteFile(fileList);
 	}
@@ -149,6 +150,12 @@ public class BoardServiceImp implements BoardService {
 		if(bd_num == null || bd_num <=0)
 			return null;
 		return boardDao.selectFileList(bd_num);
+	}
+
+
+	@Override
+	public int getTotalCount(String type, Criteria cri) {
+		return boardDao.selectBoardCount(type, cri);
 	}
 	 
 }

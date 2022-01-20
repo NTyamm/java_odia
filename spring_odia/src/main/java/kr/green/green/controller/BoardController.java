@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.green.green.pagination.Criteria;
+import kr.green.green.pagination.PageMaker;
 import kr.green.green.service.BoardService;
 import kr.green.green.vo.BoardVO;
 import kr.green.green.vo.FileVO;
@@ -33,9 +35,16 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public ModelAndView boardList(ModelAndView mv) {
-		//VO를 이용해 리스트 정보 불러오기. VO 클래스 연결 필요
-		List<BoardVO> list = boardService.getBoardList("일반");
+	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
+		//페이네이션 정보 추가
+		cri.setPerPageNum(3);
+		//VO를 이용해 리스트 정보 불러오기. VO 클래스 연결 필요. "일반"을 매개변수 cri로 변경
+		List<BoardVO> list = boardService.getBoardList("일반", cri);
+		//페이지메이커를 만들어서 화면에 전달해야 함. 
+		//가져온 게시글들을 설정한 페이지네이션의 페이지 수, 매개변수로 전달받은 현재 페이지 정보를 이용해 페이지 메이커로 정리
+		int totalCount = boardService.getTotalCount("일반", cri);
+		PageMaker pm = new PageMaker(totalCount, 3, cri);
+		mv.addObject("pm", pm);
 		mv.addObject("list",list)
 		  .setViewName("/board/list"); //세미콜론을 안 쓰고 mv에 묶을 수 있음
 		return mv;
@@ -51,7 +60,9 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value = "/register", method  = RequestMethod.GET)
-	public ModelAndView boardRegisterGet(ModelAndView mv) {
+	public ModelAndView boardRegisterGet(ModelAndView mv, int bd_ori_num) {
+		BoardVO board = boardService.getBoard(bd_ori_num);
+		mv.addObject("bd_ori_num",bd_ori_num);
 		mv.setViewName("/board/register");
 		return mv;
 	}
@@ -113,7 +124,8 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping("/download")
 	public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
-		String uploadPath = "D:\\JAVA_ODIA\\java_odia\\upload"; //업로드된곳
+//		String uploadPath = "D:\\JAVA_ODIA\\java_odia\\upload"; //업로드된곳
+		String uploadPath = "C:\\Users\\MASTER\\Desktop\\java_odia\\upload"; //업로드된곳
 	    InputStream in = null;
 	    ResponseEntity<byte[]> entity = null;
 	    try{
