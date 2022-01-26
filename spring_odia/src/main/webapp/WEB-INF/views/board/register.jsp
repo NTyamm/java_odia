@@ -10,11 +10,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>글쓰기</h1>
+<h2>${board.typeTitle}</h2><!-- c:if 대신 boardVO 메소드 활용 -->
 	<form action="<%=request.getContextPath()%>/board/register" method="post" enctype="multipart/form-data">
-		<c:if test ="${bd_ori_num != null}">
-	    	<input type="hidden" value="${bd_ori_num}" name="bd_ori_num">
+		<c:if test ="${board.bd_ori_num != null}">
+	    	<input type="hidden" value="${board.bd_ori_num}" name="bd_ori_num">
 	    </c:if>
+	    <input type="hidden" name="bd_type" value="${board.bd_type }"><!-- c:if 대신 boardVO 메소드 활용 -->
 		<div class="form group">
 			<label>제목</label>
 		 	<input type="text" class="form-control" name="bd_title">
@@ -35,7 +36,7 @@
 </form>
 	 <script>
       $('[name=bd_contents]').summernote({
-        placeholder: 'Hello Bootstrap 4',
+        placeholder: '내용을 입력하세요',
         tabsize: 2,
         height: 400
       });

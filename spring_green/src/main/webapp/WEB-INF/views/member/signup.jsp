@@ -30,6 +30,9 @@
 			<input type="text" class="form-control" placeholder="아이디" name="me_id" value="${user.me_id}">
 		</div>
 		<div class="form-group">
+			<button type="button" class="form-control btn btn-outline-danger" id="idCheck">아이디 중복 체크</button>
+		</div><!-- id는 언더바나 하이픈은 잘 쓰지 않고 카멜표기법으로 표현한다 -->
+		<div class="form-group">
 			<input type="password" class="form-control" placeholder="비밀번호" name="me_pw" value="${user.me_pw}">
 		</div>
 		<div class="form-group">
@@ -68,6 +71,31 @@
 		<button class="btn btn-outline-success col-12">회원가입</button>
 	</form>
 	<script>
+		//아이디 중복체크
+		let idCheck = false; //아이디 중복검사 기본값을 false로 전역변수.
+		$('#idCheck').click(function(){
+			var id = $('[name = me_id]').val();
+			$.ajax({ //중괄호 안에 ajax 옵션을 선택해서 넣으라는 의미
+				async: false, //다 끝날 때까지 기다리삼
+				type: 'get', //id는 url에 노출되어도 상관없음
+				//data: {id: ??}, get 방식ㅇ은 딱히 필요 없음. 대신 url에 아이디를 붙여준다
+				url:'<%=request.getContextPath()%>/idcheck?me_id='+id,
+				success:function(data){
+					if(data=='true'){
+						alert('사용 가능한 아이디입니다.');
+						idCheck = true;
+					}else{
+						alert('이미 사용중인 아이디입니다.');
+						idCheck = false;
+					}
+				}
+			});
+		});
+		//아이디 중복체크 후 아이디 변경시 재확인
+		$('[name=me_id]').change(function(){
+			idCheck=false;
+		})
+		
 		$('form').submit(function(){
 			var id = $('[name=me_id]').val().trim();
 			var pw = $('[name=me_pw]').val().trim();
@@ -88,6 +116,12 @@
 				$('[name=me_id]').focus();
 				return false;
 			}
+			//아이디 중복검사를 필수요소로
+			if(!idCheck){
+				alert('아이디 중복확인을 하세요.');
+				return false;
+			}
+			
 			if(pw == ''){
 				alert('비밀번호를 입력하세요.');
 				$('[name=me_pw]').focus();

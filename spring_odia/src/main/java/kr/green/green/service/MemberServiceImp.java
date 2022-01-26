@@ -47,4 +47,9 @@ public class MemberServiceImp implements MemberService {
 			return null;
 		return dbUser;
 	}
+
+	@Override
+	public boolean idDuplicated(String id) {
+		return false;
+	}
 }

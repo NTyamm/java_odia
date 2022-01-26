@@ -39,10 +39,10 @@ public class BoardController {
 		//페이네이션 정보 추가
 		cri.setPerPageNum(3);
 		//VO를 이용해 리스트 정보 불러오기. VO 클래스 연결 필요. "일반"을 매개변수 cri로 변경
-		List<BoardVO> list = boardService.getBoardList("일반", cri);
+		List<BoardVO> list = boardService.getBoardList(cri);
 		//페이지메이커를 만들어서 화면에 전달해야 함. 
 		//가져온 게시글들을 설정한 페이지네이션의 페이지 수, 매개변수로 전달받은 현재 페이지 정보를 이용해 페이지 메이커로 정리
-		int totalCount = boardService.getTotalCount("일반", cri);
+		int totalCount = boardService.getTotalCount(cri);
 		PageMaker pm = new PageMaker(totalCount, 3, cri);
 		mv.addObject("pm", pm);
 		mv.addObject("list",list)
@@ -54,15 +54,16 @@ public class BoardController {
 				//VO를 이용해 boardService에게 bd_num에 따른 board정보를 가져오게 시킴
 		BoardVO board = boardService.getBoard(bd_num);
 		List<FileVO> files = boardService.getFileList(bd_num);
+		//views 를 증가시키기 위해 boardService 이용
+		boardService.updateViews(bd_num);
 		mv.addObject("board",board);
 		mv.addObject("files",files);
 		mv.setViewName("/board/detail");
 		return mv;
 	}
 	@RequestMapping(value = "/register", method  = RequestMethod.GET)
-	public ModelAndView boardRegisterGet(ModelAndView mv, int bd_ori_num) {
-		BoardVO board = boardService.getBoard(bd_ori_num);
-		mv.addObject("bd_ori_num",bd_ori_num);
+	public ModelAndView boardRegisterGet(ModelAndView mv, BoardVO board) {
+		mv.addObject("board", board);
 		mv.setViewName("/board/register");
 		return mv;
 	}
@@ -73,12 +74,11 @@ public class BoardController {
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		//글쓴이를 로그인 세션의 유저 아이디로 설정함
 		board.setBd_me_id(user.getMe_id());
-		//공지사항이 아니기 때문에 "일반"으로 게시판 타입 지정해줘야 함
-		board.setBd_type("일반");
+		//공지사항이 아니기 때문에 "일반"으로 게시판 타입 지정해줘야 함`````````````	
 		//???여기서 왜 유저정보가 사라지고 갑자기 파일스가 되는거지?????
 		boardService.registerBoard(board, files2, user);
+		mv.addObject("type", board.getBd_type());//글작성후 글 작성한 게시판 리스트로 돌아가게 
 		mv.setViewName("redirect:/board/list");
-		System.out.println("메롱");
 		return mv;
 	}
 	@RequestMapping(value = "/modify", method  = RequestMethod.GET)

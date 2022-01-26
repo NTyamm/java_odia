@@ -26,8 +26,8 @@ public class BoardServiceImp implements BoardService {
 	String uploadPath = "C:\\Users\\MASTER\\Desktop\\java_odia\\upload";
 
 	@Override
-	public List<BoardVO> getBoardList(String bd_type, Criteria cri) {
-		return boardDao.selectBoardList(bd_type, cri);
+	public List<BoardVO> getBoardList(Criteria cri) {
+		return boardDao.selectBoardList(cri);
 	}
 
 	@Override
@@ -38,13 +38,15 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override //유저정보....왜빠지는데...이게...이렇게수정이?? 체인지도 자동으로 안되고????직접쳐서????
-	public void registerBoard(BoardVO board, List<MultipartFile> files,MemberVO user) throws Exception {
+	public void registerBoard(BoardVO board, List<MultipartFile> files, MemberVO user) throws Exception {
 		if(board == null || user == null)
 			return;
 		if(board.getBd_title() == null 
 				|| board.getBd_title().trim().length() == 0)
 			return;
 		if(user.getMe_id()== null || user.getMe_id().trim().length()==0)
+			return;
+		if(!board.isAccessAuthority(user.getMe_authority()))
 			return;
 		boardDao.insertBoard(board);
 		if (files == null)
@@ -154,8 +156,15 @@ public class BoardServiceImp implements BoardService {
 
 
 	@Override
-	public int getTotalCount(String type, Criteria cri) {
-		return boardDao.selectBoardCount(type, cri);
+	public int getTotalCount(Criteria cri) {
+		return boardDao.selectBoardCount(cri);
+	}
+
+	@Override
+	public void updateViews(Integer bd_num) {
+		if(bd_num == null || bd_num <= 0)
+			return;
+		boardDao.updateViews(bd_num);
 	}
 	 
 }

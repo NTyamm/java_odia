@@ -11,7 +11,7 @@ import kr.green.green.vo.MemberVO;
 
 public interface BoardService {
 
-	List<BoardVO> getBoardList(String bd_type, Criteria cri);
+	List<BoardVO> getBoardList(Criteria cri);
 
 	BoardVO getBoard(Integer bd_num);
 	//????이게맞ㄴㅏ?? 유저빼고 파일에 throws exception?
@@ -23,7 +23,9 @@ public interface BoardService {
 
 	List<FileVO> getFileList(Integer bd_num);
 
-	int getTotalCount(String type,Criteria cri); //string을 의미전달의 용이성을 위해 type으로 변경
+	int getTotalCount(Criteria cri); //string을 의미전달의 용이성을 위해 type으로 변경
+
+	void updateViews(Integer bd_num);
 
 
 

@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.green.green.dao.BoardDAO">
 	<select id="selectBoardList" resultType="kr.green.green.vo.BoardVO">
-		select * from board where bd_type = #{bd_type} and bd_del = 'N' 
+		select * from board where bd_type = #{cri.type} and bd_del = 'N' 
 				and bd_title like concat('%',#{cri.search},'%') <!-- like concat(, ,)은 그냥 외워두자 -->
 			order by bd_ori_num desc, bd_num asc 
 			limit #{cri.pageStart}, #{cri.perPageNum}
@@ -70,6 +70,11 @@
 	 </update>
 	 <select id="selectBoardCount" resultType="int">
 	 	select count(*) from board
-	 	where bd_type = #{type} and bd_del='N'and bd_title like concat('%',#{cri.search},'%') <!-- 검색결과 조건 추가 -->
+	 	where bd_type = #{cri.type} and bd_del='N'and bd_title like concat('%',#{cri.search},'%') <!-- 검색결과 조건 추가 -->
 	 </select>
+	 <update id="updateViews">
+	 	update board set
+	 		bd_views=bd_views + 1
+	 	where bd_num = #{bd_num}
+	 </update>
 </mapper>
