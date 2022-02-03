@@ -39,6 +39,7 @@ let commentService = (function(){
 		setContextPath: setContextPath,
 		insert: ajaxPost,
 		list : ajaxGet,
-		delete : ajaxGet
+		delete : ajaxGet,
+		modify : ajaxPost
 	};
 })();

@@ -83,7 +83,7 @@
 		});
 		
 		$(document).on('click','.comment-pagination .page-item',function(){
-			if($(this).hasClasS('disabled')){
+			if($(this).hasClass('disabled')){
 				return;
 			}
 			var page = $(this).data('page');
@@ -110,19 +110,75 @@
 		var textarea
 			='<textarea class="form-control co_contents2">'+text+'</textarea>'
 		$(this).siblings('.co_contents').after(textarea);
+		var co_num = $(this).data('num');
 		var button
-			='<button class="btn btn-outline-info btn-mod-insert">댓글수정</button>'
-		$(this).siblings('.co_reg_date').after(button);
+		='<button class="btn btn-outline-info btn-mod-insert" data-num="'+co_num+'">댓글수정</button>'
+		
+	$(this).siblings('.co_reg_date').after(button);
 	});
+	//댓글수정 버튼 클릭 이벤트
+	$(document).on('click','.btn-mod-insert',function(){
+		//댓글번호
+		var co_num = $(this).data('num');
+		//댓글내용
+		var co_contents=$('.co_contents2').val();//co_contents2가 하나만 존재하면 이렇게 써도 됨
+		//var co_contents=$(this).siblings('.co_contents2').val(); //근데 두 개일 수 있을 땐 이렇게 써야 안정적
+		var comment = {
+				co_num : co_num,
+				co_contents : co_contents
+		}
+		commentService.modify(comment, '/comment/modify', modifySuccess);
+	 });	
+		//화면 로딩 준비가 끝나면 댓글 불러옴
+		var listUrl='/comment/list?page=1&bd_num='+'${board.bd_num}';
+			commentService.list(listUrl,listSuccess)
+
+	function modifySuccess(res){
+		if(res){
+			var page =$('.comment-pagination .active').data('page');
+			var listUrl='/comment/list?page='+page+'&bd_num='+'${board.bd_num}';
+			commentService.list(listUrl,listSuccess)
+			alert('댓글 수정이 완료되었습니다.');
+		}else{
+			('댓글 수정에 실패했습니다.')
+		}
+	}
+	//댓글에 답글 달기
+	$(document).on('click','.btn-reply-comment',function(){
+		commentInit();
+		var str= '<textarea class="form-control co_contents2" rows="3"></textarea>';
+		var buttonStr='<button class="btn btn-success btn-rep-insert" data-num="'+$(this).data('num')+'">답글 등록</button>';
+		$(this).parent().children('button').hide();
+		$(this).parent().append(str);
+		$(this).parent().append(buttonStr);
+	});
+	//댓글답글 등록버튼 클릭 이벤트
+	$(document).on('click','.btn-rep-insert',function(){
+		var co_bd_num ='${board.bd_num}';
+		var co_contents =$('.co_contents2').val();
+		var co_ori_num =$(this).data('num');
+		var co_me_id='${user.me_id}'
+		var comment={
+				co_bd_num: co_bd_num,
+				co_contents: co_contents,
+				co_ori_num: co_ori_num,
+				co_me_id:co_me_id
+		}
+		commentService.insert(comment, '/comment/insert', insertSuccess);
+	 });	
+		//화면 로딩 준비가 끝나면 댓글 불러옴
+		var listUrl='/comment/list?page=1&bd_num='+'${board.bd_num}';
+			commentService.list(listUrl,listSuccess);
+
 	
 	function listSuccess(res){
 		var str = '';
-		var me_id = '${user.me_id}';
-		if(res.list.length == 0){
-			$('.comment-list').html('');
-			$('.comment-pagination').html('');
-			return;
-		}
+    var me_id = '${user.me_id}';
+    if(res.list.length == 0){
+    	$('.comment-list').html('');
+    	$('.comment-pagination').html('');
+    	return;
+    }
 		
 		for(tmp of res.list){
 			str += createComment(tmp, me_id);
@@ -159,7 +215,7 @@
 		str+=		'<div class="co_contents">'+comment.co_contents+'</div>'
 		str+=		'<div class="co_reg_date">'+co_reg_date+'</div>'
 		if(comment.co_ori_num == comment.co_num)
-		str+=		'<button class="btn btn-outline-info btn-reply-comment mr-1">답글</button>'
+		str+=		'<button class="btn btn-outline-info btn-reply-comment mr-1" data-num="'+comment.co_num+'">답글</button>'
 		if(comment.co_me_id == me_id){
 		str+=		'<button class="btn btn-outline-dark btn-mod-comment mr-1" data-num="'+comment.co_num+'">수정</button>'
 		str+=		'<button class="btn btn-outline-danger btn-del-comment" data-num="'+comment.co_num+'">삭제</button>'
@@ -203,6 +259,7 @@
 			$(this).find('btn-mod-insert').remove();
 			$(this).find('button').show();
 			$(this).find('.co_contents').show;
+			$(this).find('.btn-rep-insert').remove(); //다른 버튼에서 답글 누르면 기존에 뜬 답글버튼 사라짐
 		})	
 	}
 	//날짜출력 정상화
