@@ -10,4 +10,16 @@ public interface MemberService {
 
 	boolean idDuplicated(String id);
 
+	MemberVO updateMember(MemberVO input, MemberVO user);
+
+	String findId(MemberVO member);
+
+	String findPw(MemberVO member);
+
+	void updateAutoLogin(MemberVO user);
+
+	MemberVO selectMemberBySessionId(String value);
+
+	
+
 }

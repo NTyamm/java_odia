@@ -14,7 +14,7 @@
 	<script src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/additional-methods.min.js"></script>
 	<style>
-	.error{color:red};
+	.error{ color : red }
 	</style>
 </head>
 <body>
@@ -56,6 +56,7 @@
 				</label>
 			</div>
 		</div>
+		<label id="me_gender-error" class="error" for="me_gender"></label>
 		<div class="form-group">
 			<div class="form-inline mb-2">
 				<input type="text" id="postcode" placeholder="우편번호" class="form-control col-6">
@@ -72,29 +73,32 @@
 	</form>
 	<script>
 		var idCheck = false;
+		
 		$('#idCheck').click(function(){
-			var id = $('[neme=me_id]').val();
+			var id = $('[name=me_id]').val();
 			$.ajax({
-				async: false,
-				type: 'POST',
-				data: {id: ??},
-				url:"<%=request.getContextPath()%>/idCheck",
-				success: function(res){
-					if(res == 'ok')
-						idCheck = true;
-					else
-						idCheck=false;
-					if(idCheck)
-						alert('사용가능한 아이디입니다.');
-					else
-						alert('이미 사용중인 아이디입니다.');
-					//idCheck = res == 'ok' ? true : false;
+				async:false,
+				type:'POST',
+				data: {id : id },
+				url:"<%=request.getContextPath()%>/idcheck",
+				success : function(res){
+			    if(res == 'ok')
+			    	idCheck = true;
+			    else
+			    	idCheck = false;
+			    //idCheck = res == 'ok' ? true : false;
+			    if(idCheck)
+			    	alert('사용 가능한 아이디입니다.');
+			    else
+			    	alert('이미 사용 중인 아이디입니다.');
 				}
-			})
+			});
 		});
+		
 		$('[name=me_id]').change(function(){
 			idCheck = false;
-		})//아이디 변경시 아이디 체크 다시함
+		});
+		
 		$('form').submit(function(){
 			var isAgree = $('[name=agree]').is(':checked');
 			//동의에 체크되지 않으면
@@ -103,10 +107,12 @@
 				$('[name=agree]').focus();
 				return false;
 			}
+			
 			if(!idCheck){
-				alert('아이디 중복검사를 하세요');
+				alert('아이디 중복검사를 하세요.');
 				return false;
 			}
+			
 			var address = $('#address').val() + ' ' +$('#detailAddress').val();
 			$('[name=me_address]').val(address);
 		});
@@ -146,60 +152,61 @@
 				}
 			}).open();
     }
+		
 		$("form").validate({
-		      rules: {
-		        me_id: {
-		          required : true,
-		          regex : /^[A-z]\w{4,7}$/
-		        },
-		        me_pw: {
-		          required : true,
-		          //regex: /^(?=\w{5,20}$)\w*(\d[A-z]|[A-z]\d)\w*$/
-		          regex: /^\w*(\d[A-z]|[A-z]\d)\w*$/,
-		          minlength : 5,
-		          maxlength : 20
-		        },
-		        me_pw2: {
-		          equalTo : me_pw
-		        },
-		        me_name: {
-		          required : true
-		        },
-		        me_gender:{
-		        	required : true
-		        }
-		      },
-		      //규칙체크 실패시 출력될 메시지
-		      messages : {
-		        me_id: {
-		          required : "필수로입력하세요",
-		          regex : "영문자, 숫자로 이루어져 있으며 5~8자로 구성되어야 한다."
-		        },
-		        me_pw: {
-		          required : "필수로입력하세요",
-		          minlength : "최소 {0}글자이상이어야 합니다",
-		          maxlength : "최대 {0}글자이하이어야 합니다",
-		          regex : "영문자, 숫자로 이루어져있으며 최소 하나이상 포함"
-		        },
-		        me_pw2: {
-		          equalTo : "비밀번호가 일치하지 않습니다."
-		        },
-		        me_name: {
-		          required : "필수로입력하세요"
-		        },
-		        me_gender: {
-		        	required : "필수로입력하세요"
-		        }
-		      }
-		    });
-				$.validator.addMethod(
-			    "regex",
-			    function(value, element, regexp) {
-		        var re = new RegExp(regexp);
-		        return this.optional(element) || re.test(value);
-			    },
-			    "Please check your input."
-				);
+      rules: {
+        me_id: {
+          required : true,
+          regex : /^[A-z]\w{4,7}$/
+        },
+        me_pw: {
+          required : true,
+          //regex: /^(?=\w{5,20}$)\w*(\d[A-z]|[A-z]\d)\w*$/
+          regex: /^\w*(\d[A-z]|[A-z]\d)\w*$/,
+          minlength : 5,
+          maxlength : 20
+        },
+        me_pw2: {
+          equalTo : me_pw
+        },
+        me_name: {
+          required : true
+        },
+        me_gender:{
+        	required : true
+        }
+      },
+      //규칙체크 실패시 출력될 메시지
+      messages : {
+        me_id: {
+          required : "필수로입력하세요",
+          regex : "영문자, 숫자로 이루어져 있으며 5~8자로 구성되어야 한다."
+        },
+        me_pw: {
+          required : "필수로입력하세요",
+          minlength : "최소 {0}글자이상이어야 합니다",
+          maxlength : "최대 {0}글자이하이어야 합니다",
+          regex : "영문자, 숫자로 이루어져있으며 최소 하나이상 포함"
+        },
+        me_pw2: {
+          equalTo : "비밀번호가 일치하지 않습니다."
+        },
+        me_name: {
+          required : "필수로입력하세요"
+        },
+        me_gender: {
+        	required : "필수로입력하세요"
+        }
+      }
+    });
+		$.validator.addMethod(
+	    "regex",
+	    function(value, element, regexp) {
+        var re = new RegExp(regexp);
+        return this.optional(element) || re.test(value);
+	    },
+	    "Please check your input."
+		);
 	</script>
 </body>
 </html>

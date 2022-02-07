@@ -18,6 +18,8 @@ public class BoardVO {
 	private String bd_del;
 	private Date bd_del_date;
 	private int bd_views;
+	private int bd_up;
+	private int bd_down;
 	
 	//Date를 String으로 형변환
 	public String getBd_reg_date_str() {

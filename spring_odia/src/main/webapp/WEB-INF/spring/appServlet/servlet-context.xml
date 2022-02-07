@@ -52,17 +52,24 @@
         <mapping path="/board/register"/>
         <mapping path="/board/modify"/>
         <mapping path="/board/delete"/>
+        <mapping path="/mypage"/>
         <beans:ref bean="memberInterceptor"/>
 	</interceptor>
 	</interceptors>
 	<beans:bean id="guestInterceptor" 
 	class="kr.green.green.interceptor.GuestInterceptor"></beans:bean>
+	<beans:bean id="autoLoginInterceptor" 
+	class="kr.green.green.interceptor.AutoLoginInterceptor"></beans:bean>
 	<interceptors>
-	<interceptor>
-        <mapping path="/signup"/>
-        <mapping path="/login"/>
-        <beans:ref bean="guestInterceptor"/>
-	</interceptor>
+		<interceptor>
+	        <mapping path="/signup"/>
+	        <mapping path="/login"/>
+	        <beans:ref bean="guestInterceptor"/>
+		</interceptor>
+		<interceptor>
+	        <mapping path="/**"/>
+	        <beans:ref bean="autoLoginInterceptor"/>
+		</interceptor>
 	</interceptors>
 	<!-- 첨부파일용 baens -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

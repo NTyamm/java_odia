@@ -39,6 +39,10 @@
 	 				<label>첨부파일 없음</label>
 	 			</c:if>
 	 		</div>
+	 		<div class="justify-content-center likes-btn-box" style="display:flex; padding:8px">
+	 			<button class="btn btn-outline-primary btn-up" data-state="1">추천</button>
+	 			<button class="btn btn-outline-danger btn-down ml-2" data-state="-1">비추천</button>
+	 		</div>
  		</c:if>
  		<c:if test="${user.me_id == board.bd_me_id }">
 		  	<a href="<%=request.getContextPath() %>/board/modify?bd_num=${board.bd_num}"> 
@@ -115,9 +119,44 @@
 				readComment(co_bd_num, 1);
 			}else{ 
 				alert('댓글 등록에 실패했습니다.');
-       		}
-		})
-	  })
+      }
+			console.log(likes);
+		});
+	 });
+		$('.btn-up, .btn-down').click(function(){
+			var li_state=$(this).data('state');
+			var li_bd_num='${board.bd_num}';
+			var li_me_id='${user.me_id}';
+			var likes={
+					li_state : li_state,
+					li_bd_num: li_bd_num,
+					li_me_id : li_me_id
+			}
+			console.log(likes)
+			if(li_me_id == ''){
+				alert('로그인한 회원만 가능합니다');
+				return;
+			}
+			$.ajax({
+				async:false,
+				type:'POST',
+				data: JSON.stringify(likes),
+				url: '<%=request.getContextPath()%>/board/likes',
+				dataType:"json",
+				contentType:"application/json; charset=UTF-8",
+				success : function(res){
+					if(res == 1){
+						alert('추천했습니다.');
+					}else if(res == -1){
+						alert('비추천했습니다.')
+					}else if(res != "fail"){
+						var str = li_state == 1 ? '추천':'비추천';
+						alert(str + '을 취소했습니다.')
+					}
+					viewLikes(likes);
+				}
+			});
+		});
 	});
 	//요소에 이벤트를 등록하는 게 아니라 document에 등록해서 요소가 나중에 추가돼도 해당 선택자만 맞으면 이벤트가 실행됨
 	$(document).on('click','.comment-pagination .page-link', function(){
@@ -261,12 +300,41 @@
 	          }else{
 	        	  alert('답글을 달 수 없습니다.');
 	          }
-		})		
+		});
 	});
 	
 	//화면 로딩 후 댓글과 댓글 페이지네이션 배치
 	var co_bd_num = '${board.bd_num}';
 	readComment(co_bd_num, 1);
+	viewLikes({
+		li_bd_num : '${board.bd_num}',
+		li_me_id : '${user.me_id}'
+	});
+	
+	//함수 모음
+	function viewLikes(likes){
+		$.ajax({
+			async:false,
+			type:'POST',
+			data: JSON.stringify(likes),
+			url: '<%=request.getContextPath()%>/board/view/likes',
+			dataType:"json",
+			contentType:"application/json; charset=UTF-8",
+			success : function(res){
+				console.log(res)
+				$('.likes-btn-box .btn')
+				.removeClass('btn-primary')
+				.addClass('btn-outline-primary');
+				$('.likes-btn-box .btn').each(function(){
+					if($(this).data('state') == res){
+						$(this)
+							.removeClass('btn-outline-primary')
+							.addClass('btn-primary');		
+						}
+				});
+			}
+		});
+	}
 	//Date 객체를 yyyy-MM-dd hh:mm 형태의 문자열로 변환하는 함수
 	
 	function getDateStr(date){

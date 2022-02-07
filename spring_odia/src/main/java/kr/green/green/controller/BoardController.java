@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +24,9 @@ import kr.green.green.pagination.Criteria;
 import kr.green.green.pagination.PageMaker;
 import kr.green.green.service.BoardService;
 import kr.green.green.vo.BoardVO;
+import kr.green.green.vo.CommentVO;
 import kr.green.green.vo.FileVO;
+import kr.green.green.vo.LikesVO;
 import kr.green.green.vo.MemberVO;
 
 @Controller
@@ -145,6 +148,20 @@ public class BoardController {
 	        in.close();
 	    }
 	    return entity;
+	}
+	@ResponseBody
+	@RequestMapping(value ="/likes")
+	public String boardLikes(@RequestBody LikesVO likes, HttpServletRequest request){
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+	
+	  return boardService.likes(likes,user);
+	}
+	@ResponseBody
+	@RequestMapping(value ="/view/likes")
+	public String boardViewLikes(@RequestBody LikesVO likes, HttpServletRequest request){
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+	
+	  return boardService.viewLikes(likes,user);
 	}
 }
 	

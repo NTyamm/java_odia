@@ -24,6 +24,7 @@
 	       <th>작성자</th>
 	       <th>작성일</th>
 	       <th>조회수</th>
+	       <th>추천/비추천</th>
 	     </tr>
 	   </thead>
 	   <tbody>
@@ -39,6 +40,7 @@
 		       <td>${board.bd_me_id}</td>
 		       <td>${board.bd_reg_date_str}</td> <!-- SimpleDateFormat 이용해 Date 표기형식 변경된 것을 _str 붙여서 반영 -->
 		       <td>${board.bd_views}</td>
+		        <td>${board.bd_up}/${board.bd_down}</td>
 		     </tr>
 	     </c:forEach>
 	   </tbody>

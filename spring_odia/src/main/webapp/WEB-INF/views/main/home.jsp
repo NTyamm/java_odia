@@ -8,11 +8,15 @@
 </head>
 <body>
 <div class="body">
-	<h1>
-		Hello world!  
-	</h1>
-	<input type="text" id="input">
-	<button id="btn">확인</button>
+	<select class="main-category">
+		<option>선택</option>
+	</select>
+	<select class="middle-category">
+		<option>선택</option>
+	</select>
+	<select class="sub-category">
+		<option>선택</option>
+	</select>
 </div>
 <script>
 
