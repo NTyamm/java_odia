@@ -33,6 +33,12 @@
 		 			  <a class="form-control" href="<%=request.getContextPath()%>/board/download?fileName=${file.fi_name}">${file.fi_ori_name}</a>
 		 			</c:forEach>
 	 		</div>
+	 		<div class="likes-btn-box mb-3">
+		  	
+			  <button class="btn btn-outline-primary btn-up" data-value="1">추천</button>
+			  <button class="btn btn-outline-dark btn-down" data-value="-1">비추천</button>
+			</a>
+	 		</div>
  		</c:if>
  		<c:if test="${user.me_id == board.bd_me_id }">
 		  	<a href="<%=request.getContextPath() %>/board/modify?bd_num=${board.bd_num}"> 
@@ -41,15 +47,16 @@
 		  	<a href="<%=request.getContextPath() %>/board/delete?bd_num=${board.bd_num}"> 
 		  	  <button class="btn btn-outline-success">삭제</button>
 		  	</a>
-	  	</c:if>
-	  	<c:if test="${board.bd_type != '공지' && board.bd_num == board.bd_ori_num}">
-		  	<a href="<%=request.getContextPath()%>/board/register?bd_ori_num=${board.bd_num}"> 
+	  </c:if>
+	  <c:if test="${board.bd_type != '공지' && board.bd_num == board.bd_ori_num}">
+		  <a href="<%=request.getContextPath()%>/board/register?bd_ori_num=${board.bd_num}"> 
 			  	 <button class="btn btn-outline-success">답글</button>
 			</a>
 		</c:if>
  		<c:if test="${board == null}">
 			<h1>없는 게시글이거나 삭제된 게시글입니다.</h1>
 		</c:if>
+		
 		<hr class="mt-3">
 		<div class="comment-list clearfix"></div>
 		<div class="comment-pagination">
@@ -62,7 +69,7 @@
 		</div>
  	</div>
  	
- 	<script type="text/javascript">
+ 	<script>
 	var contextPath = '<%=request.getContextPath()%>';
 	commentService.setContextPath(contextPath);
 	$(function(){
@@ -92,6 +99,14 @@
 		})
 		var listUrl="/comment/list?page=1&bd_num="+'${board.bd_num}';
 		commentService.list(listUrl,listSuccess);
+		loadLikes({
+			li_bd_num : '${board.bd_num}'
+		});
+/*		var likes ={
+				li_bd_num : '${board.bd_num}'
+		}
+		loadlikes(likes;)*/
+	
 	});
 	//페이지네이션.......너무어렵다.....
 	//댓글삭제 이벤트
@@ -170,6 +185,78 @@
 		var listUrl='/comment/list?page=1&bd_num='+'${board.bd_num}';
 			commentService.list(listUrl,listSuccess);
 
+	//추천, 비추천 버튼 클릭 이벤트 등록
+	//$('.btn-up, btn-down')
+	$('.likes-btn-box .btn').click(function(){
+		var li_me_id = '${user.me_id}';
+		var li_bd_num = '${board.bd_num}';
+		//var li_state = $(this).data('value');
+		var li_state;
+		if($(this).hasClass('btn-up')){
+			li_state= 1;
+		}else{
+			li_state = -1;
+		}
+		var likes ={
+				li_me_id : li_me_id,
+				li_bd_num : li_bd_num,
+				li_state : li_state
+		}
+		$.ajax({
+      async:false,
+      type:'POST',
+      data:JSON.stringify(likes),
+      url: '<%=request.getContextPath()%>/board/likes',
+      contentType:"application/json; charset=UTF-8",
+      success : function(res){
+	     	if(res ==  1)
+	    	 	alert('추천했습니다.');
+	     	else if(res == -1)
+	    	 	alert('비추천했습니다.');
+	  	 	else if(res == 0){
+	  		 	if(li_state == 1)
+	  			 	alert('추천을 취소했습니다.');
+	  		 	else
+	  			 	alert('비추천을 취소했습니다.');
+  		 	}
+	     	loadLikes({
+					li_bd_num : '${board.bd_num}'
+				});
+     	}
+  	});
+	});
+	//추천/비추천시 컬러 바꿈
+	function loadLikes(likes){
+		$.ajax({
+      async:false,
+      type:'POST',
+      data:JSON.stringify(likes),
+      url: '<%=request.getContextPath()%>/board/likes/views',
+      contentType:"application/json; charset=UTF-8",
+      success : function(res){
+    	//추천, 비추천 버튼을 초기 상태로 만듬
+        $('.btn-up')
+        	.removeClass('btn-primary')
+        	.addClass('btn-outline-primary');
+    		$('.btn-down')
+    			.removeClass('btn-dark')
+    			.addClass('btn-outline-dark');
+    		console.log(res);
+    	  //비추천 상태이면 비추천 버튼을 색칠함
+        if(res == -1){
+        	$('.btn-down')
+        		.removeClass('btn-outline-dark')
+        		.addClass('btn-dark');
+        }
+    	  //추천상태이면 추천 버튼을 색칠함
+        else if(res == 1){
+        	$('.btn-up')
+        		.removeClass('btn-outline-primary')
+        		.addClass('btn-primary');
+        }
+      }	                           
+		});
+	}
 	
 	function listSuccess(res){
 		var str = '';
