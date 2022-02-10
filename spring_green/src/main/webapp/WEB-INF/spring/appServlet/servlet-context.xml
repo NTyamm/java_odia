@@ -52,16 +52,23 @@
         <mapping path="/board/register"/>
         <mapping path="/board/modify"/>
         <mapping path="/board/delete"/>
+        <mapping path="/mypage"/>
         <beans:ref bean="memberInterceptor"/>
 	</interceptor>
 	</interceptors>
 	<beans:bean id="guestInterceptor" 
 	class="kr.green.green.interceptor.GuestInterceptor"></beans:bean>
+	<beans:bean id="autoInterceptor" 
+	class="kr.green.green.interceptor.AutoInterceptor"></beans:bean>
 	<interceptors>
 	<interceptor>
         <mapping path="/signup"/>
         <mapping path="/login"/>
         <beans:ref bean="guestInterceptor"/>
+	</interceptor>
+	<interceptor>
+	        <mapping path="/**"/>
+	        <beans:ref bean="autoInterceptor"/>
 	</interceptor>
 	</interceptors>
 	<!-- 파일첨부용 -->

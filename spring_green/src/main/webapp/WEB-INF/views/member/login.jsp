@@ -9,7 +9,7 @@
 <body>
 <div class="body">
 	<div class="container">
-		<h1 class="text-center">회원가입</h1>
+		<h1 class="text-center">로그인</h1>
 		<form action="<%=request.getContextPath()%>/login" method="post">
 			<div class="form-group">
 			  <input type="text" class="form-control" name="me_id">
@@ -18,8 +18,17 @@
 			  <input type="password" class="form-control" name="me_pw">
 			</div>
 			<button class="btn btn-outline-success col-12">로그인</button>
+			<div class="form-check-inline">
+			  <label class="form-check-label">
+			    <input type="checkbox" class="form-check-input" value="true" name="me_auto_login">자동로그인
+			  </label>
+			</div>
 		</form>
+		<a href="<%=request.getContextPath()%>/member/find">아이디/비밀번호 찾기</a>
 	</div>
 </div>
 </body>
+<script>
+
+</script>
 </html>
